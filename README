@@ -1,6 +1,6 @@
 Install git on your machine
 make a copy of the current version by:
-git clone git@github.com:bensonby/csc2720.git
+git clone git@github.com:bensonby/csc2720.git (for the first time only)
 >> this will automatically create the directory "csc2720" in the directory you issue this command
 
 after modifying/adding any files, type "git add ." or "git add file1.php file2.php" so that they will be committed
@@ -13,3 +13,7 @@ finally type:
   git push origin master
 
 and you are done!
+
+Next if someone else has committed their works and you have to update your own source, type:
+git pull
+and it will do it for you

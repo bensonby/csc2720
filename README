@@ -9,7 +9,7 @@ and then type:
   git commit -m "[explanation] adding a README"
 
 finally type:
-  git remote add origin git@github.com:bensonby/csc2720.git
+  git remote add origin git@github.com:bensonby/csc2720.git (for the first time only)
   git push origin master
 
 and you are done!

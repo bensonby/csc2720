@@ -1,10 +1,15 @@
-#index-sign-in {
+#sign-in {
   background-color: white;
   border: solid 1px #5ea0c1;
   padding: 6px;
 }
 
-#index-sign-in-box {
+#sign-in.highlighted {
+  background-color: gray;
+  color: white;
+}
+
+#sign-in-box {
   width: 170px;
   background-color: white;
   border: solid 1px #5ea0c1;

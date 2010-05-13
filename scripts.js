@@ -1,8 +1,13 @@
-function index_signin_init(){
-  $('index-sign-in').observe('click', function(){
-    $('index-sign-in-box').toggle();
+function signin_init(){
+  $('sign-in').observe('click', function(){
+    $('sign-in-box').toggle();
+    $('sign-in').toggleClassName('highlighted');
     return false;
   });
 
-  $('index-sign-in').writeAttribute("href", "#");
+  $('sign-in').writeAttribute("href", "#");
 }
+
+Event.observe(window, 'load', function(){
+  signin_init();
+});

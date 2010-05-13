@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS users (
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(10) NOT NULL,
 password VARCHAR(32) NOT NULL,
-admin_right INTEGER NOT NULL DEFAULT 0
+is_admin INTEGER NOT NULL DEFAULT 0
 );
 INSERT INTO users VALUES ('', 'user1',  'e58c4a0dcfacb433b62efaa52be54cc8', 0),
                          ('', 'user2',  'e58c4a0dcfacb433b62efaa52be54cc8', 0),

@@ -11,17 +11,30 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     header("Location: index.php");
     exit();
   }else{
-    $msg = "Login Failed";
+    set_msg("Login Failed");
   }
 }
 
 include 'header.php';
+
+include 'menu.php';
 ?>
 
-<div id="login-block">
-  <form id="login-form" method="post" action="login.php">
+<div id="message-block">
+  <?=get_msg() ?>
+</div>
 
-    <input type="submit" value="Log in" />
+<div id="sign-in-block">
+  <form method="post" action="login.php">
+    <p>
+      <label for="username">Username</label>
+      <input type="text" name="username" size="10" />
+    </p>
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" size="10" />
+    </p>
+    <input type="submit" value="Sign In" />
   </form>
 </div>
 

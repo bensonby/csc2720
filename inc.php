@@ -45,6 +45,13 @@ function get_msg(){
   unset($_SESSION["msg"]);
   return $message;
 }
+
+function log($msg){
+  //internal error log
+  $fp = fopen("log.txt", "a");
+  fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------");
+  fclose($fp);
+}
 //$a=new Cup(array("size"=>"Medium", "type"=>"type 1", "image"=>"hello.jpg"));
 //$a->save();
 ?>

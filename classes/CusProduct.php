@@ -11,22 +11,80 @@ abstract class CusProduct {
 
   function save(){
     if($this->is_saved()) return false;
+    $str = dbstr(array('id' => '',
+                       'product_id' => $this->product_id,
+                       'quantity'   => $this->quantity
+                 ), ",", false);
+    $result = sql("INSERT INTO cusproducts VALUES($str)");
+    if(!result) return false;
+    $this->id = mysql_insert_id();
+
+    foreach($this->attr as $attr){
+      $str = dbstr(array('id' => '',
+                         'cus_product_id' => $this->id,
+                         'attr_name' => $attr,
+                         'attr_value' => $this->custom[$attr]
+                   ), ",", false);
+  
+      $result = sql("INSERT INTO attrs VALUES($str)");
+      if(!$result) return false;
+    }
+  
+    return $this->id;
   }
 
 
   function update(){
     //update the customized product in the database
     //return true/false on success/failure
+    if(!$this->is_saved()) return false;
+    $str = dbstr(array('product_id' => $this->product_id,
+                       'quantity'   => $this->quantity
+                 ), ",", true);
+    $result = sql("UPDATE cus_products SET $str WHERE id = {$this->id}", SQL_SINGLE_VALUE);
+    if(!$result) return false;
+
+    foreach($this->attr as $attr){
+      $str = dbstr(array('attr_name' => $attr,
+                         'cus_product_id' => $this->id
+                   ), ",", true);
+      $result = sql("UPDATE attrs SET attr_value = {$this->custom[$attr]}
+                     WHERE $str", SQL_SINGLE_VALUE);
+      if(!$result) return false;
+    }
+
+    return true;
   }
 
   function delete(){
     //remove the customized product in the database
     //return true/false on success/failure
+    if(!$this->is_saved()) return false;
+
+    $result = $this->cart->remove_product($this);
+    if(!$result) return false;
+
+    $result = sql("DELETE FROM cus_products WHERE id = {$this->id}", SQL_SINGLE_VALUE);
+    if(!$result) return false;
+
+    $result = sql("DELETE FROM attrs WHERE cus_product_id = {$this->id}", SQL_SINGLE_VALUE);
+    if(!$result) return false;
+
+    return true;
   }
 
   static function find($id){
     //create the object CusProduct of the specific type from reading the database for the id
     //return the object/false on success/failure
+    $result = sql("SELECT * FROM cus_products WHERE id=$id", SQL_SINGLE_ROW);
+    if(!$result) return false;
+
+    switch($result["product_id"]){
+      case 1: return new Cup($result);
+      case 2: return new AA($result);
+      case 3: return new BB($result);
+      default: return false;
+    }
   }
 
   function is_saved(){

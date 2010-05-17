@@ -28,6 +28,17 @@ class User {
     else return false;
   }
 
+  function assign_order($order){
+    //assign an order to the user
+    //return true/false on success/failure
+    if(!$order instanceof Order){
+      log2('order is not an instance of Order when calling assign_order for a user');
+      return false;
+    }
+    $this->order = $order;
+    return $order->assign_user($this);
+  }
+
   static function auth($username, $password){
     $username = mysql_real_escape_string($username);
     $password = md5($password);

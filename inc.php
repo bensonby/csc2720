@@ -30,7 +30,7 @@ function dbstr($data, $delimiter, $isField=true){
   }
   foreach($data as $key=>$value){
     $ret.=($first!=1?$delimiter:"").($isField?$key."=":"");
-    $ret.="'".str_replace("'", "\\'", $value)."'";
+    $ret.=($key!='time'?"'":"").str_replace("'", "\\'", $value).($key!='time'?"'":"");
     $first=0;
   }
   return $ret;
@@ -46,7 +46,7 @@ function get_msg(){
   return $message;
 }
 
-function log($msg){
+function log2($msg){
   //internal error log
   $fp = fopen("log.txt", "a");
   fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------");

@@ -8,6 +8,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   $user_id = User::auth($_POST["username"], $_POST["password"]);
   if($user_id){
     $_SESSION['user_id'] = $user_id;
+    $user = new User($user_id);
+    //to assign a new cart to a user on re-login -- an assumption in project
+
+    $order = new Order();
+    $user->assign_order($order);
+    $order->save();
+
     header("Location: index.php");
     exit();
   }else{

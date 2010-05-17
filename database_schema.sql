@@ -13,11 +13,14 @@ CREATE TABLE IF NOT EXISTS products (
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(50) NOT NULL,
 description VARCHAR(1024) NOT NULL,
-price DOUBLE NOT NULL
+price DOUBLE NOT NULL,
+attr_list VARCHAR(50) NOT NULL,
+sample_image VARCHAR(70) NOT NULL
 );
-INSERT INTO products VALUES (1, 't-shirt', 'T-shirt', 10),
-                            (2, 'cup', 'Cup', 20), 
-                            (3, 'cap', 'Cap', 30);
+INSERT INTO products VALUES
+  (1, 'T-shirt', 'T-shirt more text..', 10, 'image,size,color,image location,image size', 'images/sample-shirt.jpg'),
+  (2, 'Cup', 'Cup more text..', 20, 'image,size,color,handle style', 'images/sample-cup.jpg'), 
+  (3, 'Cap', 'Cap more text..', 30, 'image,size,color,text', 'images/sample-cap.jpg');
 -- t-shirt: image, size, color, image location, image size
 -- cup: image, size, color, handle style
 -- hat: image, size, color, text
@@ -26,7 +29,7 @@ CREATE TABLE IF NOT EXISTS orders (
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 user_id INTEGER NOT NULL,
 status VARCHAR(15) NOT NULL, -- incomplete, completed
-time TIMESTAMP NOT NULL,
+time DATETIME NOT NULL,
 name VARCHAR(50),
 address VARCHAR(100),
 email VARCHAR(256),

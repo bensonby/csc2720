@@ -9,10 +9,5 @@ class Cup extends CusProduct {
                      );
 
   function __construct($attributes){
-    foreach($this->attr as $key=>$values){
-      if(!in_array($key, array_keys($attributes))) die('Hacking Attempt!');
-      if(!in_array($attributes[$key], $this->attr[$key])) die('Hacking Attempt!');
-      $this->custom[$key]=$attributes[$key];
-    }
   }
 }

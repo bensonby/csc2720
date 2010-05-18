@@ -1,17 +1,17 @@
-<div id="menu">
-  <ul>
-    <? if($user){ ?>
-      <li><a href="products.php">Products</a></li>
-      <li><a href="cart.php">View my Cart</a></li>
-      <li><a href="orders.php">My order status</a></li>
-      <? if($user->is_admin()){ ?>
-        <li><a href="admin.php">Admin Panel</a></li>
+	<div id="menu">
+    		<ul>
+    		<? if($user){ ?>
+    				<li><a href="index.php">Home</a></li>
+    				<li><a href="products.php">Products</a></li>
+    				<li><a href="about.php">About</a></li>
+    				<li><a href="contact.php">Contact</a></li>
+    				<li><a href="cart.php">Cart</a></li>
+    		<? if($user->is_admin()){ ?>
+            <li><a href="admin.php">Admin Panel</a></li>
+        <? } ?>
       <? } ?>
-    <? } ?>
-  </ul>
-</div>
-
-<div id="login"><!-- this is made according to twitter.com, for styling you may refer to that site -->
+      
+     <li> <div id="login">
   <? if(!$user){ ?>
   <div><a href="login.php" id="sign-in">Sign In</a></div>
   <div id="sign-in-box" style="display: none;">
@@ -32,6 +32,12 @@
     Hello, <?=$user->get_name() ?>!
     <a href="logout.php">Sign Out</a></div>
   <? } ?>
-</div>
+</div>   
+      </li>
+
+    		</ul>
+	   </div>
+	   
+          
   
   

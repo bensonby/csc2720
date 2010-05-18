@@ -1,6 +1,5 @@
 <?php
 class Mysql{
-  static 
   static public function connect($host, $un, $pw, $db){
     if(!($link=mysql_connect($host, $un, $pw))){
       die('Cannot connect to database'); //error

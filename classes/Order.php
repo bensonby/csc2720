@@ -126,4 +126,44 @@ class Order {
     }
     return true;
   }
+  
+  function set_name($name){
+    if (!empty($name)){
+        $this->name=$name;
+        return true;
+    }
+    return false;
+  }
+  
+  function set_address($address){
+    if (!empty($address)){
+        $this->address=$address;
+        return true;
+    }
+    return false;
+  }
+  
+  function set_email($email){
+    if (!empty($email)){
+        $this->email=$email;
+        return true;
+    }
+    return false;
+  }
+  
+  function set_phone($phone){
+    if (!empty($phone)){
+        $this->phone=$phone;
+        return true;
+    }
+    return false;
+  }
+  
+  function set_price($price){
+  if (!empty($price)){
+        $this->price=$price;
+        return true;
+    }
+    return false;
+  }
 }

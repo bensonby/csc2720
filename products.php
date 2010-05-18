@@ -10,7 +10,7 @@ include 'menu.php';
 
 ?>
 <div id="content">
-  <? foreach($products as $product){ ?>
+  <?php foreach($products as $product){ ?>
     <div class="products-block">
       <div class="products-img-container"><!-- perhaps 128x128 pixels? -->
         <img src="<?php echo $product->get_sample_image(); ?>" />
@@ -31,10 +31,10 @@ include 'menu.php';
         </a>
       </div>
     </div>
-  <? } ?>
+  <?php } ?>
 
 </div>
 
-<?
+<?php
 include 'footer.php';
 ?>

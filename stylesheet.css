@@ -1,11 +1,9 @@
 #sign-in {
-  background-color: white;
-  border: solid 1px #5ea0c1;
-  padding: 6px;
+  background-color: #F55220;
 }
 
 #sign-in.highlighted {
-  background-color: gray;
+  background-color: grey;
   color: white;
 }
 
@@ -21,19 +19,20 @@
 body{
 	border: 0px;
 	margin: 0px;
-	font: 12px, verdana;
+	font-size: 12px;
 	background-color: #E2E2E2;
 }
 
 #logo{
 	width: 800px;
 	padding-left: 10px;
-	font: 30px;
+	padding-top: 10px;
+	font-size: 30px;
 }
 
 #menu{
 	width: 800px;
-	height: 28px;
+	height: 23px;
 	background-color: #F55220;
 }
 #menu ul{
@@ -48,6 +47,7 @@ body{
 	display: block;
 	width: 90px;
 	font-weight: bold;
+	font-size:  12px;
 	color: #FFFFFF;
 	background-color: #F55220;
 	text-align: center;
@@ -74,7 +74,7 @@ h3{
 	height: 20px;
 	font-weight: bold;
 	color: #FFFFFF;
-	font-size: 15px;
+	font-size: 12px;
 }
 #index-main{
 	margin: 0px;
@@ -95,7 +95,52 @@ h3{
 	background-color: #FFFFFF;
 }
 
-#login{
-	width: 100%;
-	background-color: #FFFFFF;
+.products-block{
+  padding: 5px;
+  height: 130px;
+  width: 800px;
+}
+.products-img-container{
+  float: left;
+ width: 200px;
+ height: 200px;
+}
+.products-img-container img{
+   width: 200px;
+  padding:  5px;
+}
+.products-desc-container{
+  float: left;
+  height: 200px;
+  width:  400px;
+  padding:  5px;
+  margin-left: 15px;
+}
+
+.products-buy-container{
+  float: left;
+  height: 200px;
+  width:  120px;
+  padding:  5px;
+}
+
+h4{
+  font-size: 20px;
+  margin: 0px;
+}
+
+h5{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.products-desc-text{
+
+}
+
+.products-attr-list{
+}
+
+.products-price-text{
 }

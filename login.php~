@@ -11,9 +11,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $user = new User($user_id);
     //to assign a new cart to a user on re-login -- an assumption in project
 
-    //$order = new Order();
-    //$user->assign_order($order);
-    //$order->save();
+    $order = new Order();
+    $user->assign_order($order);
+    $order->save();
 
     header("Location: index.php");
     exit();

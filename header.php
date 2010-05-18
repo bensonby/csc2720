@@ -9,6 +9,7 @@
   </head>
   <body>
      	<div id="logo">
-			   CLY
+			   <img src=logo.gif>
+			   slogan
     	</div>
   

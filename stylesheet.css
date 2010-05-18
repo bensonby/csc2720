@@ -27,9 +27,12 @@ body{
 	width: 800px;
 	padding-left: 10px;
 	padding-top: 10px;
-	font-size: 30px;
+	font-size: 15px;
 }
 
+#logo img{
+   width: 120px;
+}
 #menu{
 	width: 800px;
 	height: 23px;

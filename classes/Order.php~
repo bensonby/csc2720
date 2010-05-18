@@ -1,4 +1,4 @@
-<<<<<<< HEAD:classes/Order.php~
+<<<<<<< HEAD:classes/Order.php
 <?php
 class Order {
   private $id;
@@ -94,7 +94,7 @@ class Order {
   static function find($id){
     print $id;
     $cus_product_id = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}");
-    foreach($cus_product_id as $cp_id) $ret[] = $cp_id;
+    foreach($cus_product_id as $cp_id) $ret[] = intval($cp_id);
     return $ret;
     
     
@@ -266,7 +266,7 @@ class Order {
       return false;
     }
     return true;
->>>>>>> 8835c16609e9294017d37400682e1d721de639ad:classes/Order.php~
+>>>>>>> 8835c16609e9294017d37400682e1d721de639ad:classes/Order.php
   }
   
   function set_name($name){

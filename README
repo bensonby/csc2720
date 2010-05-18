@@ -17,3 +17,13 @@ and you are done!
 Next if someone else has committed their works and you have to update your own source, type:
 git pull
 and it will do it for you
+
+
+------------------------------ how to GIT in windows:
+open the public key id_ras.pub in notepad
+copy all the content, and paste it into Github account settings
+
+issue the following commands:
+ssh-keygen -C "email@a.com" -t rsa
+git config --global user.name zeron828
+git config --global user.email zeron828@hotmail.com

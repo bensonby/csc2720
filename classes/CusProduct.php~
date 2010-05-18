@@ -93,6 +93,7 @@ abstract class CusProduct {
     $attrs = sql("SELECT * FROM attrs WHERE cus_product_id=$id");
     //some data processing..
     foreach($attrs as $attr) $result_attrs[$attr["attr_name"]] = $attr["attr_value"];
+    print "ok";
     switch($result["product_id"]){
       case 1: return new Shirt($result_main, $result_attrs);
       case 2: return new Cup($result_main, $result_attrs);

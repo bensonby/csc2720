@@ -91,6 +91,18 @@ class Order {
   }
 
   static function find($id){
+    print $id;
+    $cus_product_id = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}");
+    foreach($cus_product_id as $cp_id) $ret[] = intval($cp_id);
+    return $ret;
+    
+    
+  }
+  
+  static function get_orderid($user_id){
+    $result=sql("SELECT id FROM orders WHERE user_id={$user_id}");
+    if (!count($result)==1) return false;
+    else return intval($result[0]);
   }
 
   function add_product($cus_product){

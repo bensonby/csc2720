@@ -46,6 +46,13 @@ body{
   display: inline;
   float: left;
  }
+ 
+#user{
+    font-weight: bold;
+  	font-size:  12px;
+  	color: #FFFFFF;
+  	padding: 4px;
+}
 #menu a:link,a:visited{
 	display: block;
 	width: 90px;

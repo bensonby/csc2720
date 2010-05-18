@@ -28,12 +28,18 @@
       <input type="submit" value="Sign In" />
     </form>
     </div>
+    </li>
   <?php }else{ ?>
 
     <a href="logout.php">Sign Out</a></div>
+    </li>
+    <li>
+    <div id="user">
+      Hello, <?php $user->get_name() ?>!
+    </div>
+    </li>
  <?php } ?>
   
-      </li>
     		</ul>
 	   </div>
 	   

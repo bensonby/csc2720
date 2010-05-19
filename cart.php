@@ -20,6 +20,7 @@ if (!empty($order_id)){
   foreach($cus_product_ids as $cp_id){
       $cps[]=CusProduct::find($cp_id);
   }
+  print $cps[0]->get_id();
 }
 ?>
 

@@ -1,8 +1,11 @@
 <?php
 class Product {
 
+  private $info = array(); //id, name, description, price, sample_image, attr_list(array)
+//  private $id, $name, $description, $price, $sample_image, $attr_list = array();
+
   static function find($id){
-    $id = mysql_real_escape_string($id);
+    $id = intval($id);
     if(empty($id)) return false;
     $result = sql("SELECT * FROM products WHERE id = $id", SQL_SINGLE_ROW);
     if(!$result){
@@ -14,12 +17,28 @@ class Product {
   }
 
   private function __construct($info){
-    $this->id = $info["id"];
+    $this->info = array_merge($this->info, $info);
+/*    $this->id = $info["id"];
     $this->name = $info["name"];
     $this->description = $info["description"];
     $this->price = $info["price"];
-    $this->sample_image = $info["sample_image"];
-    $this->attr_list = explode(",", $info["attr_list"]);
+    $this->sample_image = $info["sample_image"];*/
+    $this->info["attr_list"] = explode(",", $this->info["attr_list"]);
+  }
+
+  function get_cusproduct(){
+/*    $result_main = array("id" => $this->id,
+                         "name" => $this->name,
+                         "description" => $this->description,
+                         "price" => $this->price,
+                         "sample_image" => $this->sample_image,
+                        );*/
+    $result_main = $this->info;
+    switch($this->info["id"]){
+      case 1: return new Shirt($result_main, array(), 0);
+      case 2: return new Cup($result_main, array(), 0);
+      case 3: return new Cap($result_main, array(), 0);
+    }
   }
 
   static function get_all_products(){
@@ -28,11 +47,11 @@ class Product {
     return $ret;
   }
 
-  function get_id(){ return $this->id; }
-  function get_name(){ return $this->name; }
-  function get_description(){ return $this->description; }
-  function get_price(){ return $this->price; }
-  function get_sample_image(){ return $this->sample_image; }
-  function get_attr_list(){ return $this->attr_list; }
+  function get_id(){ return $this->info["id"]; }
+  function get_name(){ return $this->info["name"]; }
+  function get_description(){ return $this->info["description"]; }
+  function get_price(){ return $this->info["price"]; }
+  function get_sample_image(){ return $this->info["sample_image"]; }
+  function get_attr_list(){ return $this->info["attr_list"]; }
 }
 ?>

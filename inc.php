@@ -8,7 +8,8 @@ session_start();
 
 spl_autoload_register('myclass__autoload');
 
-Mysql::connect("localhost", "root", "", "csc2720");
+//Mysql::connect("localhost", "root", "*", "csc2720");
+Mysql::connect("localhost", "csc2720", "addoil", "csc2720");
 
 $user = User::logged_in_user();
 

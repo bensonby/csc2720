@@ -1,16 +1,19 @@
 <?php
 abstract class CusProduct {
-  private $product_id, $product_name;
+  private $info=array(); //id, product_id, product_name, price, description, quantity
+                         //user, cart
+//  private $product_id, $product_name;
   private $attr=array(); //preset attributes
   private $custom=array(); //customized attributes input
-  private $id;
-  private $user_id;
-  private $cart_id;
+//  private $id;
+//  private $user_id;
+//  private $cart_id;
 
-  function __construct($main, $attrs){
-    foreach($this->attr as $key=>$values){
-      if(!in_array($key, array_keys($attrs))) die('Hacking Attempt!');
-      if(!in_array($attributes[$key], $this->attr[$key])) die('Hacking Attempt!');
+  function __construct($main, $attrs, $isValidate=1){
+    $this->info = array_merge($this->info, $main);
+    foreach($this->attr as $key=>$value){
+      if($isValidate && !in_array($key, array_keys($attrs))) die('Hacking Attempt!');
+      if($isValidate && !in_array($attributes[$key], $this->attr[$key])) die('Hacking Attempt!');
       $this->custom[$key]=$attributes[$key];
     }
   }
@@ -18,8 +21,8 @@ abstract class CusProduct {
   function save(){
     if($this->is_saved()) return false;
     $str = dbstr(array('id' => '',
-                       'product_id' => $this->product_id,
-                       'quantity'   => $this->quantity
+                       'product_id' => $this->info["product_id"],
+                       'quantity'   => $this->info["quantity"]
                  ), ",", false);
     $result = sql("INSERT INTO cusproducts VALUES($str)");
     if(!result) return false;
@@ -27,7 +30,7 @@ abstract class CusProduct {
 
     foreach($this->attr as $attr){
       $str = dbstr(array('id' => '',
-                         'cus_product_id' => $this->id,
+                         'cus_product_id' => $this->info["id"],
                          'attr_name' => $attr,
                          'attr_value' => $this->custom[$attr]
                    ), ",", false);
@@ -44,15 +47,15 @@ abstract class CusProduct {
     //update the customized product in the database
     //return true/false on success/failure
     if(!$this->is_saved()) return false;
-    $str = dbstr(array('product_id' => $this->product_id,
-                       'quantity'   => $this->quantity
+    $str = dbstr(array('product_id' => $this->info["product_id"],
+                       'quantity'   => $this->info["quantity"],
                  ), ",", true);
-    $result = sql("UPDATE cus_products SET $str WHERE id = {$this->id}");
+    $result = sql("UPDATE cus_products SET $str WHERE id = {$this->info["id"]}");
     if(!$result) return false;
 
     foreach($this->attr as $attr){
       $str = dbstr(array('attr_name' => $attr,
-                         'cus_product_id' => $this->id
+                         'cus_product_id' => $this->info["id"]
                    ), ",", true);
       $result = sql("UPDATE attrs SET attr_value = {$this->custom[$attr]}
                      WHERE $str");
@@ -70,10 +73,10 @@ abstract class CusProduct {
     $result = $this->cart->remove_product($this);
     if(!$result) return false;
 
-    $result = sql("DELETE FROM cus_products WHERE id = {$this->id}");
+    $result = sql("DELETE FROM cus_products WHERE id = {$this->info["id"]}");
     if(!$result) return false;
 
-    $result = sql("DELETE FROM attrs WHERE cus_product_id = {$this->id}");
+    $result = sql("DELETE FROM attrs WHERE cus_product_id = {$this->info["id"]}");
     if(!$result) return false;
 
     return true;
@@ -87,7 +90,8 @@ abstract class CusProduct {
       log2("invalid ID passed to CusProduct::find -- $id");
       return false;
     }
-    $result_main = sql("SELECT * FROM cus_products WHERE id=$id", SQL_SINGLE_ROW);
+    $result_main = sql("SELECT c.quantity, c.id AS id, p.* FROM cus_products c, products p
+                        WHERE c.id=$id AND c.product_id=p.id", SQL_SINGLE_ROW);
     if(!$result_main) return false;
 
     $attrs = sql("SELECT * FROM attrs WHERE cus_product_id=$id");
@@ -102,12 +106,8 @@ abstract class CusProduct {
   }
 
   function is_saved(){
-    return !empty($this->id);
+    return !empty($this->info["id"]);
   }
 
-  function display_form(){
-    //generate an HTML form according to the customizable attributes of the product
-    //return an HTML string
-  }
 }
 ?>

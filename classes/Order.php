@@ -18,6 +18,14 @@ class Order {
                         "price" => 0.0);
   }
 
+  private function update_price(){
+    $price = 0;
+    foreach($this->cus_products as $cus_product){
+      $price += $cus_product->get_quantity()*$cus_product->get_price();
+    }
+    $this->info["price"] = $price;
+  }
+
   function assign_user($user){
     if(!$user instanceof User){
       log2('invalid object as a class of User when assigning user to an order');
@@ -68,6 +76,7 @@ class Order {
       log2('Invalid action - update for an unsaved order');
       return false;
     }
+    $this->update_price();
     $str = dbstr(array('user_id' => $this->info["user"]->get_id(),
                        'status'  => $this->info["status"],
                        'time'    => "NOW()",
@@ -99,6 +108,7 @@ class Order {
   }
 
   static function find($id){
+    if(!$id) return false;
 
     $id = intval($id);
 
@@ -122,6 +132,10 @@ class Order {
 //    if (!count($result)==1) return false;
 //    else return intval($result[0]);
     $result=sql("SELECT id FROM orders WHERE user_id={$user_id} ORDER BY time DESC LIMIT 1", SQL_SINGLE_VALUE);
+    if(!$result){
+      log2("failed to get_orderid for user $user_id");
+      return false;
+    }
     return intval($result);
   }
 
@@ -135,7 +149,7 @@ class Order {
                      'cart_id'=>$this->info["id"],
                      'cus_product_id'=>$cus_product->get_id()
                     ), ",", false);
-    $result=sql("INSERT INTO cart_products VALUES($str)");
+    $result=sql("INSERT INTO order_products VALUES($str)");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
@@ -151,7 +165,7 @@ class Order {
     $str = dbstr(array('cart_id' => $this->info["id"],
                        'cus_product_id' => $cus_product->get_id()
                  ), ",", true);
-    $result = sql("DELETE FROM cart_products WHERE $str");
+    $result = sql("DELETE FROM order_products WHERE $str");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;

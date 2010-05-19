@@ -13,11 +13,13 @@ abstract class CusProduct {
     $this->info = array_merge($this->info, $main);
     foreach($this->attr as $key=>$value){
       if($isValidate && $key=="text" && (strlen($attrs[$key])>$value || empty($attrs[$key])))
-        die('Hacking Attempt -- customized attribute of type "text"');
+        throw new Exception('Hacking Attempt -- customized attribute of type "text"');
+      if($isValidate && $key=="image" && empty($attrs[$key]))
+        throw new Exception('Hacking Attempt -- customized attribute of type "image"');
       if($isValidate && !in_array($key, array_keys($attrs)))
-        die("Hacking Attempt -- missing attribute $key");
+        throw new Exception("Hacking Attempt -- missing attribute $key");
       if($isValidate && is_array($value) && !in_array($attrs[$key], $value))
-        die("Hacking Attempt -- invalid value of attribute $key");
+        throw new Exception("Hacking Attempt -- invalid value of attribute $key");
       $this->custom[$key]=$attrs[$key];
     }
   }
@@ -28,11 +30,12 @@ abstract class CusProduct {
                        'product_id' => $this->info["product_id"],
                        'quantity'   => $this->info["quantity"]
                  ), ",", false);
-    $result = sql("INSERT INTO cusproducts VALUES($str)");
-    if(!result) return false;
-    $this->id = mysql_insert_id();
 
-    foreach($this->attr as $attr){
+    $result = sql("INSERT INTO cus_products VALUES($str)");
+    if(!result) return false;
+    $this->info["id"] = mysql_insert_id();
+
+    foreach($this->attr as $attr=>$value){
       $str = dbstr(array('id' => '',
                          'cus_product_id' => $this->info["id"],
                          'attr_name' => $attr,
@@ -43,7 +46,7 @@ abstract class CusProduct {
       if(!$result) return false;
     }
   
-    return $this->id;
+    return $this->info["id"];
   }
 
 
@@ -98,16 +101,18 @@ abstract class CusProduct {
                         FROM cus_products c, products p
                         WHERE c.id=$id AND c.product_id=p.id", SQL_SINGLE_ROW);
     if(!$result_main) return false;
-var_dump($result_main);
 
     $attrs = sql("SELECT * FROM attrs WHERE cus_product_id=$id");
     //some data processing..
     foreach($attrs as $attr) $result_attrs[$attr["attr_name"]] = $attr["attr_value"];
     if(!$result_attrs) return false;
     switch(intval($result_main["product_id"])){
-      case 1: return new Shirt($result_main, $result_attrs);
-      case 2: return new Cup($result_main, $result_attrs);
-      case 3: return new Cap($result_main, $result_attrs);
+      case 1: try{ return new Shirt($result_main, $result_attrs);
+              }catch(Exception $e){ return false; }
+      case 2: try{ return new Cup($result_main, $result_attrs);
+              }catch(Exception $e){ return false; }
+      case 3: try{ return new Cap($result_main, $result_attrs);
+              }catch(Exception $e){ return false; }
       default: return false;
     }
   }
@@ -117,6 +122,7 @@ var_dump($result_main);
   }
 
   function get_id(){ return $this->info["id"]; }
+  function get_quantity(){ return $this->info["quantity"]; }
   function get_product_id(){ return $this->info["product_id"]; }
   function get_name(){ return $this->info["name"]; }
   function get_description(){ return $this->info["description"]; }

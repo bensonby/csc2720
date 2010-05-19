@@ -33,11 +33,16 @@ class Product {
   function create_cusproduct($attrs, $isValidate = 1){
     $result_main = $this->info;
     $result_main["product_id"] = $result_main["id"];
+    $result_main["quantity"] = intval($attrs["quantity"]);
     unset($result_main["id"]);
+    unset($attrs["quantity"]);
     switch($this->info["id"]){
-      case 1: return new Shirt($result_main, $attrs, 0);
-      case 2: return new Cup($result_main, $attrs, 0);
-      case 3: return new Cap($result_main, $attrs, 0);
+      case 1: try{ return new Shirt($result_main, $attrs, $isValidate);
+              }catch(Exception $e){ return false; }
+      case 2: try{ return new Cup($result_main, $attrs, $isValidate);
+              }catch(Exception $e){ return false; }
+      case 3: try{ return new Cap($result_main, $attrs, $isValidate);
+              }catch(Exception $e){ return false; }
       default: return false;
     }
   }

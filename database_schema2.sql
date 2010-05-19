@@ -14,6 +14,16 @@ INSERT INTO `cus_products` (`id`, `product_id`, `quantity`) VALUES (NULL, '3', '
 
 INSERT INTO `cus_products` (`id`, `product_id`, `quantity`) VALUES (NULL, '3', '4');
 
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '1', 'size', 'Small');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '1', 'text', 'text on shirt');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '1', 'color', 'White');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '1', 'image', '1');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '1', 'image location', '[front] centre');
+
 INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '2', 'size', 'Large');
 
 INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '2', 'text', 'text on cap');

@@ -14,6 +14,12 @@ function change($cp_id,$attrs){
 }
 
 $order_id=Order::get_orderid($_SESSION['user_id']);
+//echo get_msg();
+//$a=Order::find($order_id);
+//echo "<pre>\n";
+//var_dump($a);
+//echo "</pre>\n";
+//die();
 if (!empty($order_id)){
   $cus_product_ids=Order::find($order_id);
 

@@ -1,7 +1,7 @@
 <?php
 class Shirt extends CusProduct {
   protected $attr=array("size"=>array('Small', 'Medium', 'Large'),
-                        "color"=>array('black', 'blue', 'brown', 'white'),
+                        "color"=>array('Black', 'Blue', 'Brown', 'White'),
                         "text"=>15,
                         "image"=>'hello.jpg',
                         "image location" => array("[front] centre", "[front] bottom right",

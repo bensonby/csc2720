@@ -50,9 +50,8 @@ function get_msg(){
 function log2($msg){
   //internal error log
   $fp = fopen("log.txt", "a");
-  fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------");
+  fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------\n");
+  fwrite($fp, print_r(debug_backtrace(), true));
   fclose($fp);
 }
-//$a=new Cup(array("size"=>"Medium", "type"=>"type 1", "image"=>"hello.jpg"));
-//$a->save();
 ?>

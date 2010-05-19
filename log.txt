@@ -1,0 +1,9 @@
+Time: 2010-05-19 12:22:25
+failed to get_orderid for user 
+------------------Time: 2010-05-19 12:23:12
+failed to get_orderid for user 
+------------------Time: 2010-05-19 13:41:13
+failed to get_orderid for user 
+------------------Time: 2010-05-19 13:52:11
+failed to get_orderid for user 
+------------------

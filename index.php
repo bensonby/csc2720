@@ -10,14 +10,27 @@ include 'menu.php';
 <div id="content">
 				<div id="right">
 					<div id="news">
-						<h3>News</h3>
-						just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test 
-					</div>
+						<h2>News</h2>
+						Hi! Everyone. Welcome to CLY online shopping store.
+            </div>
 				</div>
 				<div id="index-main">
-					<h3>Promotional Items</h3>
-						just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test just put sth here to test 
-				</div>
+					<h2>Promotional Items</h2>
+					<div class="index-promo-name-container">
+					   <h1>Cap</h1>
+					</div>
+					<div class="index-promo-desc-container">
+					   Sold out 100 pieces in 30 days. ADD TO CART NOW!
+          </div>
+					 <div class="index-promo-price-container">
+              <span class="original-price">Original Price: $100 <br> </span>
+              <span class="onsale-price">Sale Price: $80  </span>
+            </div>
+						 <div class="index-promo-image-container">
+              <img src="images/sample-cap.jpg">
+            </div> 
+             
+            </div>
 	</div>
 <?
 include 'footer.php';

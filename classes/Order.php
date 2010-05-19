@@ -99,12 +99,22 @@ class Order {
   }
 
   static function find($id){
-//    print $id;
-    $cus_product_id = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}");
-    foreach($cus_product_id as $cp_id) $ret[] = intval($cp_id);
-    return $ret;
-    
-    
+
+    $id = intval($id);
+
+    $info = sql("SELECT * FROM orders WHERE id = $id", SQL_SINGLE_ROW);
+    if(!$info){
+      log2("failed to find the order with id $id");
+      return false;
+    }
+    $order = new Order();
+    $order->info = $info;
+
+    $cus_product_ids = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}", SQL_SINGLE_COL);
+    foreach($cus_product_ids as $cp_id){
+      $order->cus_products[] = CusProduct::find(intval($cp_id));
+    }
+    return $order;
   }
   
   static function get_orderid($user_id){

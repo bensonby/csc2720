@@ -18,4 +18,14 @@ INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (
 
 INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '2', 'text', 'text on cap');
 
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '2', 'color', 'Black');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '2', 'image', '1');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '3', 'size', 'Small');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '3', 'text', 'hello');
+
 INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '3', 'color', 'Red');
+
+INSERT INTO `attrs` (`id`, `cus_product_id`, `attr_name`, `attr_value`) VALUES (NULL, '3', 'image', '2');

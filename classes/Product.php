@@ -27,19 +27,18 @@ class Product {
   }
 
   function get_cusproduct(){
-/*    $result_main = array("id" => $this->id,
-                         "name" => $this->name,
-                         "description" => $this->description,
-                         "price" => $this->price,
-                         "sample_image" => $this->sample_image,
-                        );*/
+    return $this->create_cusproduct(array(), 0);
+  }
+
+  function create_cusproduct($attrs, $isValidate = 1){
     $result_main = $this->info;
     $result_main["product_id"] = $result_main["id"];
     unset($result_main["id"]);
     switch($this->info["id"]){
-      case 1: return new Shirt($result_main, array(), 0);
-      case 2: return new Cup($result_main, array(), 0);
-      case 3: return new Cap($result_main, array(), 0);
+      case 1: return new Shirt($result_main, $attrs, 0);
+      case 2: return new Cup($result_main, $attrs, 0);
+      case 3: return new Cap($result_main, $attrs, 0);
+      default: return false;
     }
   }
 

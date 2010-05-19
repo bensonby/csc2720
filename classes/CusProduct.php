@@ -12,9 +12,13 @@ abstract class CusProduct {
   function __construct($main, $attrs, $isValidate=1){
     $this->info = array_merge($this->info, $main);
     foreach($this->attr as $key=>$value){
-      if($isValidate && !in_array($key, array_keys($attrs))) die('Hacking Attempt!');
-      if($isValidate && !in_array($attributes[$key], $this->attr[$key])) die('Hacking Attempt!');
-      $this->custom[$key]=$attributes[$key];
+      if($isValidate && $key=="text" && (strlen($attrs[$key])>$value || empty($attrs[$key])))
+        die('Hacking Attempt -- customized attribute of type "text"');
+      if($isValidate && !in_array($key, array_keys($attrs)))
+        die("Hacking Attempt -- missing attribute $key");
+      if($isValidate && is_array($value) && !in_array($attrs[$key], $value))
+        die("Hacking Attempt -- invalid value of attribute $key");
+      $this->custom[$key]=$attrs[$key];
     }
   }
 
@@ -90,14 +94,17 @@ abstract class CusProduct {
       log2("invalid ID passed to CusProduct::find -- $id");
       return false;
     }
-    $result_main = sql("SELECT c.quantity, c.id AS id, p.* FROM cus_products c, products p
+    $result_main = sql("SELECT c.quantity, c.id AS id, c.product_id, p.*
+                        FROM cus_products c, products p
                         WHERE c.id=$id AND c.product_id=p.id", SQL_SINGLE_ROW);
     if(!$result_main) return false;
+var_dump($result_main);
 
     $attrs = sql("SELECT * FROM attrs WHERE cus_product_id=$id");
     //some data processing..
     foreach($attrs as $attr) $result_attrs[$attr["attr_name"]] = $attr["attr_value"];
-    switch($result["product_id"]){
+    if(!$result_attrs) return false;
+    switch(intval($result_main["product_id"])){
       case 1: return new Shirt($result_main, $result_attrs);
       case 2: return new Cup($result_main, $result_attrs);
       case 3: return new Cap($result_main, $result_attrs);

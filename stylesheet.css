@@ -53,7 +53,7 @@ body{
   	color: #FFFFFF;
   	padding: 4px;
 }
-#menu a:link,a:visited{
+#menu a:link, #menu a:visited{
 	display: block;
 	width: 90px;
 	font-weight: bold;
@@ -65,7 +65,7 @@ body{
 	text-decoration: none;
 	text-transform: uppercase;
 }
-#menu a:hover,a:active{
+#menu a:hover, #menu a:active{
 	background-color: #D12D00;
 }
 

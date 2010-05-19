@@ -10,6 +10,6 @@
   <body>
      	<div id="logo">
 			   <img src=logo.gif>
-			   slogan
+			   Best Service We Provide
     	</div>
   

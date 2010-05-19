@@ -8,8 +8,7 @@ session_start();
 
 spl_autoload_register('myclass__autoload');
 
-//Mysql::connect("localhost", "root", "*", "csc2720");
-Mysql::connect("localhost", "csc2720", "addoil", "csc2720");
+Mysql::connect("localhost", "root", "", "csc2720");
 
 $user = User::logged_in_user();
 
@@ -50,8 +49,9 @@ function get_msg(){
 function log2($msg){
   //internal error log
   $fp = fopen("log.txt", "a");
-  fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------\n");
-  fwrite($fp, print_r(debug_backtrace(), true));
+  fwrite($fp, "Time: ".date("Y-m-d H:i:s")."\n$msg\n------------------");
   fclose($fp);
 }
+//$a=new Cup(array("size"=>"Medium", "type"=>"type 1", "image"=>"hello.jpg"));
+//$a->save();
 ?>

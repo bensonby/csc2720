@@ -1,13 +1,21 @@
 <?php
 class Order {
-  private $id;
+  private $info = array(); //id, user, status, time, name, address, email, phone, price
+//  private $id;
   private $cus_products = array();
-  private $user;
-  private $status="", $time="", $name="", $address="", $email="", $phone="", $price=0.0;
+//  private $user;
+//  private $status="", $time="", $name="", $address="", $email="", $phone="", $price=0.0;
 
   function __construct(){
-    $this->status = "created";
-    $this->time = time();
+    $this->info = array("id" => '',
+                        "user" => false,
+                        "status" => "created",
+                        "time" => time(),
+                        "name" => "",
+                        "address" => "",
+                        "email" => "",
+                        "phone" => "",
+                        "price" => 0.0);
   }
 
   function assign_user($user){
@@ -15,20 +23,20 @@ class Order {
       log2('invalid object as a class of User when assigning user to an order');
       return false;
     }
-    $this->user = $user;
+    $this->info["user"] = $user;
     return true;
   }
 
   function is_saved(){
-    return !empty($this->id);
+    return !empty($this->info["id"]);
   }
 
   function get_id(){
-    return $this->id;
+    return $this->info["id"];
   }
 
   function save(){
-    if(empty($this->user)){
+    if(empty($this->info["user"])){
       log2('Invalid User for the Cart');
       return false;
     }
@@ -37,22 +45,22 @@ class Order {
       return false;
     }
     $str = dbstr(array('id'      => '',
-                       'user_id' => $this->user->get_id(),
-                       'status'  => $this->status,
+                       'user_id' => $this->info["user"]->get_id(),
+                       'status'  => $this->info["status"],
                        'time'    => "NOW()",
-                       'name'    => $this->name,
-                       'address' => $this->address,
-                       'email'   => $this->email,
-                       'phone'   => $this->phone,
-                       'price'   => $this->price
+                       'name'    => $this->info["name"],
+                       'address' => $this->info["address"],
+                       'email'   => $this->info["email"],
+                       'phone'   => $this->info["phone"],
+                       'price'   => $this->info["price"]
                  ), ",", false);
     $result=sql("INSERT INTO orders VALUES($str)");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
     }
-    $this->id = mysql_insert_id();
-    return $this->id;
+    $this->info["id"] = mysql_insert_id();
+    return $this->info["id"];
   }
 
   function update(){
@@ -60,16 +68,16 @@ class Order {
       log2('Invalid action - update for an unsaved order');
       return false;
     }
-    $str = dbstr(array('user_id' => $this->user->get_id(),
-                       'status'  => $this->status,
-                       'time'    => time(),
-                       'name'    => $this->name,
-                       'address' => $this->address,
-                       'email'   => $this->email,
-                       'phone'   => $this->phone,
-                       'price'   => $this->price
+    $str = dbstr(array('user_id' => $this->info["user"]->get_id(),
+                       'status'  => $this->info["status"],
+                       'time'    => "NOW()",
+                       'name'    => $this->info["name"],
+                       'address' => $this->info["address"],
+                       'email'   => $this->info["email"],
+                       'phone'   => $this->info["phone"],
+                       'price'   => $this->info["price"]
                  ), ",", true);
-    $result = sql("UPDATE orders SET $str WHERE id = {$this->id}");
+    $result = sql("UPDATE orders SET $str WHERE id = {$this->info["id"]}");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
@@ -82,7 +90,7 @@ class Order {
       log2('Invalid action - delete a non-existing order');
       return false;
     }
-    $result = sql("DELETE FROM orders WHERE id = {$this->id}");
+    $result = sql("DELETE FROM orders WHERE id = {$this->info["id"]}");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
@@ -91,7 +99,7 @@ class Order {
   }
 
   static function find($id){
-    print $id;
+//    print $id;
     $cus_product_id = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}");
     foreach($cus_product_id as $cp_id) $ret[] = intval($cp_id);
     return $ret;
@@ -100,9 +108,11 @@ class Order {
   }
   
   static function get_orderid($user_id){
-    $result=sql("SELECT id FROM orders WHERE user_id={$user_id}");
-    if (!count($result)==1) return false;
-    else return intval($result[0]);
+//    $result=sql("SELECT id FROM orders WHERE user_id={$user_id}");
+//    if (!count($result)==1) return false;
+//    else return intval($result[0]);
+    $result=sql("SELECT id FROM orders WHERE user_id={$user_id} ORDER BY time DESC LIMIT 1", SQL_SINGLE_VALUE);
+    return intval($result);
   }
 
   function add_product($cus_product){
@@ -112,7 +122,7 @@ class Order {
       return false;
     }
     $str=dbstr(array('id'=>'',
-                     'cart_id'=>$this->id,
+                     'cart_id'=>$this->info["id"],
                      'cus_product_id'=>$cus_product->get_id()
                     ), ",", false);
     $result=sql("INSERT INTO cart_products VALUES($str)");
@@ -128,7 +138,7 @@ class Order {
       log2('error: add_product to cart');
       return false;
     }
-    $str = dbstr(array('cart_id' => $this->id,
+    $str = dbstr(array('cart_id' => $this->info["id"],
                        'cus_product_id' => $cus_product->get_id()
                  ), ",", true);
     $result = sql("DELETE FROM cart_products WHERE $str");
@@ -141,7 +151,7 @@ class Order {
   
   function set_name($name){
     if (!empty($name)){
-        $this->name=$name;
+        $this->info["name"]=$name;
         return true;
     }
     return false;
@@ -149,7 +159,7 @@ class Order {
   
   function set_address($address){
     if (!empty($address)){
-        $this->address=$address;
+        $this->info["address"]=$address;
         return true;
     }
     return false;
@@ -157,7 +167,7 @@ class Order {
   
   function set_email($email){
     if (!empty($email)){
-        $this->email=$email;
+        $this->info["email"]=$email;
         return true;
     }
     return false;
@@ -165,7 +175,7 @@ class Order {
   
   function set_phone($phone){
     if (!empty($phone)){
-        $this->phone=$phone;
+        $this->info["phone"]=$phone;
         return true;
     }
     return false;
@@ -173,7 +183,7 @@ class Order {
   
   function set_price($price){
   if (!empty($price)){
-        $this->price=$price;
+        $this->info["price"]=$price;
         return true;
     }
     return false;

@@ -34,6 +34,8 @@ class Product {
                          "sample_image" => $this->sample_image,
                         );*/
     $result_main = $this->info;
+    $result_main["product_id"] = $result_main["id"];
+    unset($result_main["id"]);
     switch($this->info["id"]){
       case 1: return new Shirt($result_main, array(), 0);
       case 2: return new Cup($result_main, array(), 0);

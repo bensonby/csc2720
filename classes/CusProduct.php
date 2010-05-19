@@ -1,9 +1,9 @@
 <?php
 abstract class CusProduct {
-  private $info=array(); //id, product_id, product_name, price, description, quantity
+  private $info=array(); //id, product_id, name, price, description, quantity
                          //user, cart
 //  private $product_id, $product_name;
-  private $attr=array(); //preset attributes
+  protected $attr=array(); //preset attributes
   private $custom=array(); //customized attributes input
 //  private $id;
 //  private $user_id;
@@ -109,5 +109,13 @@ abstract class CusProduct {
     return !empty($this->info["id"]);
   }
 
+  function get_id(){ return $this->info["id"]; }
+  function get_product_id(){ return $this->info["product_id"]; }
+  function get_name(){ return $this->info["name"]; }
+  function get_description(){ return $this->info["description"]; }
+  function get_price(){ return $this->info["price"]; }
+  function get_sample_image(){ return $this->info["sample_image"]; }
+  function get_attr_list(){ return $this->info["attr_list"]; }
+  function get_attr(){ return $this->attr; }
 }
 ?>

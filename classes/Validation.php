@@ -24,6 +24,23 @@ class Validation {
         return false;
     return true;
   }
+  
+  static function own_cus_product($cp_id,$uid){
+    $result=sql("SELECT orders.id 
+                 FROM orders od, order_products op 
+                 WHERE od.user_id=$uid and od.id=op.order_id and op.cus_product_id=$cp_id");
+    if (!count($result)==1)
+      return false;
+    return true;
+  }
+  
+  static function cus_attrs($pid,$attrs){
+    result=sql("SELECT * FROM `products` WHERE attr_list LIKE '$attrs' and id=$pid");
+    if (!count($result)==1)
+      return false;
+    return true;
+  }
+  
 
 }
 

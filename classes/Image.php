@@ -27,11 +27,12 @@ class Image {
     //save the uploaded image to database, return new Image id or error code on success/failure
     //$arr is the same as $_FILES['upload']
     if(@!isset($arr)) return 0;
-    if($_FILES['upload']['error'] > 0) return -1;
+    if($arr['error'] > 0) return -1;
     $allowed_types = array('image/jpeg', 'image/jpg', 'image/gif', 'image/png');
     if(!in_array($arr['type'], $allowed_types)) return -2;
     $new_filename = time()."_".$arr['name'];
     if(!move_uploaded_file($arr['tmp_name'], "images/$new_filename")) return -3;
+    if(file_exists($arr['tmp_name']) && is_file($arr['tmp_name'])) unlink($arr['tmp_name']);
     $image = new Image(array("path" => $new_filename, "owner" => $user->get_id()));
     $result = $image->save();
     if(!$result) return -4;

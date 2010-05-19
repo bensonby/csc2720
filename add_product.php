@@ -116,7 +116,12 @@ function add_product($user, $product, $attrs){
     set_msg("Failed to add the product to your cart. Please try again.");
     return false;
   }
-  set_msg("Successfully added the product to your cart.");
-  return true;
+  if($cart->update()){
+    set_msg("Successfully added the product to your cart.");
+    return true;
+  }else{
+    set_msg("Falied to update your cart. Please try again later.");
+    return false;
+  }
 }
 ?>

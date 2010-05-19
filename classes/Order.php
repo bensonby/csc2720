@@ -119,6 +119,7 @@ class Order {
     }
     $order = new Order();
     $order->info = $info;
+    $order->info["user"] = new User($info["user_id"]);
 
     $cus_product_ids = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}", SQL_SINGLE_COL);
     foreach($cus_product_ids as $cp_id){
@@ -154,6 +155,7 @@ class Order {
       log2('SQL execution error -- '.mysql_error());
       return false;
     }
+    $this->cus_products[] = $cus_product;
     return mysql_insert_id();
   }
 

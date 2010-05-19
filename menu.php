@@ -43,6 +43,6 @@
     		</ul>
 	   </div>
 	   
-          
+  <div class="message"><?php echo get_msg(); ?></div>         
   
   

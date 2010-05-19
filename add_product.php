@@ -10,11 +10,17 @@ if(!$product){
 }
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+  $_POST["attr"]["image"] = intval($_POST["attr"]["image"]);
+
   //handle add product request
-  $result = add_product($user, $product, $_POST["attr"]);
-  if($result){
-    header("Location: cart.php");
-    exit();
+  if($_POST["attr"]["image"]<=0) $_POST["attr"]["image"] = Image::process_image($_FILES['upload'], $user);
+  if($_POST["attr"]["image"]<=0) set_msg("Empty image file specified, Error code: {$_POST["attr"]["image"]}");
+  else{
+    $result = add_product($user, $product, $_POST["attr"]);
+    if($result){
+      header("Location: cart.php");
+      exit();
+    }
   }
 }
 $cusproduct = $product->get_cusproduct();
@@ -23,7 +29,6 @@ include 'header.php';
 
 include 'menu.php';
 
-echo get_msg();
 ?>
 <div id="content">
   <h3>Customize the <?php echo $cusproduct->get_name(); ?></h3>
@@ -47,7 +52,7 @@ echo get_msg();
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
           <label for="attr[quantity]">Quantity</label>
             <input type="text" name="attr[quantity]" value="<?php echo $_POST["attr"]["quantity"]; ?>" />
-          <?php echo display_form_attr($cusproduct, $_POST); ?>
+          <?php echo display_form_attr($user, $cusproduct, $_POST); ?>
           <input type="submit" name="submit" value="Add to Cart" />
 
         </form>
@@ -59,7 +64,7 @@ echo get_msg();
 <?
 include 'footer.php';
 
-function display_form_attr($cusproduct, $old_inputs){
+function display_form_attr($user, $cusproduct, $old_inputs){
   $ret = "";
   if(!$cusproduct instanceof CusProduct) return "";
   $attr = $cusproduct->get_attr();
@@ -68,7 +73,17 @@ function display_form_attr($cusproduct, $old_inputs){
     $ret.="<label for='attr[$key]'>".ucwords($key)."</label>\n";
     if($key=="image"){
 //      $ret.="<input type='file' name='attr[$key]' />\n";
-      $ret.="<input type='text' name='attr[$key]' value='{$old_inputs["attr"][$key]}' />\n";
+      $ret.="<input type='radio' name='attr[$key]' value='0' />Upload your own photo:\n";
+      $ret.="<input type='file' name='upload' /><br />\n";
+      $ret.="Or select from below:<br />\n";
+      $images = Image::get_available_images($user->get_id());
+      $ret.="<div id='product-browse-images'>\n";
+      foreach($images as $image){
+        $ret.="<input type='radio' name='attr[$key]' value='{$image->get_id()}' />\n";
+        $ret.="<img src='images/{$image->get_path()}' alt='images/{$image->get_path()}' />\n";
+        $ret.="<br />\n";
+      }
+      $ret.="</div>\n";
     }else if($key=="text"){
       $ret.="<input type='text' name='attr[$key]' maxlength='$values' 
               value='{$old_inputs["attr"][$key]}' />\n";
@@ -93,7 +108,7 @@ function add_product($user, $product, $attrs){
   $cart = Order::find(Order::get_orderid($user->get_id()));
   if(!$cart){
     log2("Failed to create the cart (Order) for the user {$user->get_id()}");
-    set_msg("Failed to add the product to your cart. Please try again.");
+    set_msg("Failed to add the product to your cart. Please try again later.");
     return false;
   }
   $result = $cart->add_product($cusproduct);

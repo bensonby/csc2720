@@ -60,4 +60,13 @@ CREATE TABLE IF NOT EXISTS images(
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 path VARCHAR(100) NOT NULL,  
 owner INTEGER NOT NULL -- 0: company, others: user_id
-)
+);
+
+INSERT INTO images VALUES
+('', 'IND_004.gif', 0),
+('', 'IND_011.gif', 0),
+('', 'IND_014.gif', 0),
+('', 'IND_016.gif', 0),
+('', 'IND_017.gif', 1),
+('', 'IND_018.gif', 1),
+('', 'IND_031.gif', 2)

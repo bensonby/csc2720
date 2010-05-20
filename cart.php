@@ -19,8 +19,8 @@ function change($cp_id,$attrs){
 }
 
 if($_SERVER["REQUEST_METHOD"]=="GET"){
-  if(!empty($_GET["id"]) and !empty($GET["oid"]))
-  remove($_GET["id"],$GET["oid"]);}
+  if(!empty($_GET["id"]) && !empty($_GET["oid"]))
+    remove($_GET["id"],$_GET["oid"]);}
 
 $order_id=Order::get_orderid($_SESSION['user_id']);
 //echo get_msg();

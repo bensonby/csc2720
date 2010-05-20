@@ -156,14 +156,15 @@ class Order {
       log2('error: add_product to cart');
       return false;
     }
-    $str = dbstr(array('cart_id' => $this->info["id"],
+    $str = dbstr(array('order_id' => $this->info["id"],
                        'cus_product_id' => $cus_product->get_id()
-                 ), ",", true);
+                 ), " and ", true);
     $result = sql("DELETE FROM order_products WHERE $str");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
     }
+    //$cus_product->delete();
     return true;
   }
   

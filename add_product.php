@@ -50,9 +50,17 @@ include 'menu.php';
               action="add_product.php?id=<?php echo $cusproduct->get_product_id(); ?>">
 
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-          <label for="attr[quantity]">Quantity</label>
-            <input type="text" name="attr[quantity]" value="<?php echo $_POST["attr"]["quantity"]; ?>" />
-          <?php echo display_form_attr($user, $cusproduct, $_POST); ?>
+          <table border="0">
+            <tr>
+              <td>
+                <label for="attr[quantity]">Quantity</label>
+              </td>
+              <td>
+                <input type="text" name="attr[quantity]" value="<?php echo $_POST["attr"]["quantity"]; ?>" />
+              </td>
+            </tr>
+            <?php echo display_form_attr($user, $cusproduct, $_POST); ?>
+          </table>
           <input type="submit" name="submit" value="Add to Cart" />
 
         </form>
@@ -69,8 +77,7 @@ function display_form_attr($user, $cusproduct, $old_inputs){
   if(!$cusproduct instanceof CusProduct) return "";
   $attr = $cusproduct->get_attr();
   foreach($attr as $key=>$values){
-    $ret.="<div class='products-customize-div'>\n";
-    $ret.="<label for='attr[$key]'>".ucwords($key)."</label>\n";
+    $ret.="<tr><td><label for='attr[$key]'>".ucwords($key)."</label></td><td>\n";
     if($key=="image"){
 //      $ret.="<input type='file' name='attr[$key]' />\n";
       $ret.="<input type='radio' name='attr[$key]' value='0' />Upload your own photo:\n";
@@ -93,7 +100,7 @@ function display_form_attr($user, $cusproduct, $old_inputs){
         $ret.="<input type='radio' name='attr[$key]' value='$value' $checked> $value \n";
       }
     }
-    $ret.="</div>\n";
+    $ret.="</tr>\n";
   }
   return $ret;
     

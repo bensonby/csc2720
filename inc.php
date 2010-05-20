@@ -3,7 +3,7 @@ define("SQL_SINGLE_VALUE",  1000);
 define("SQL_SINGLE_ROW",    1001);
 define("SQL_SINGLE_COLUMN", 1002);
 define("SQL_MULTIPLE_ROWS", 1003);
-$allowed_for_guests = array("index.php", "about.php", "contact.php", "products.php");
+$allowed_for_guests = array("index.php", "about.php", "contact.php", "products.php", "login.php");
 
 session_start();
 

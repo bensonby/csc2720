@@ -87,9 +87,6 @@ abstract class CusProduct {
     //return true/false on success/failure
     if(!$this->is_saved()) return false;
 
-    $result = $this->cart->remove_product($this);
-    if(!$result) return false;
-
     $result = sql("DELETE FROM cus_products WHERE id = {$this->info["id"]}");
     if(!$result) return false;
 

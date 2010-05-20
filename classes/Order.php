@@ -164,6 +164,7 @@ class Order {
       log2('SQL execution error -- '.mysql_error());
       return false;
     }
+    $cus_product->delete();
     return true;
   }
   

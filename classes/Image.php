@@ -7,10 +7,26 @@ class Image {
     $this->info = $info;
   }
 
+  function get_format(){ //return jpg, gif or png
+    $ext = after_last('.', $this->info["path"]);
+    switch(strtolower($ext)){
+      case 'jpg': case 'jpeg': return 'jpeg';
+      case 'gif': return 'gif';
+      case 'png': return 'png';
+      default: return false;
+    }
+  }
+
+  function generate_php_header(){
+    $format = $this->get_format();
+    if($format) header("Content-Type: image/$format");
+  }
+
   static function find($id){
     $id = intval($id);
     $result = sql("SELECT * FROM images WHERE id = $id", SQL_SINGLE_ROW);
     if(!$result) return false;
+    if(!file_exists("images/".$result["path"])) return false;
     return new Image($result);
   }
 

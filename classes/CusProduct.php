@@ -23,6 +23,7 @@ abstract class CusProduct {
       $this->custom[$key]=$attrs[$key];
     }
     $this->find_user();
+    $this->info["attr_list"] = explode(",", $this->info["attr_list"]);
   }
 
   private function find_user(){

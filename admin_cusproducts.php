@@ -29,7 +29,7 @@ include 'menu.php';
       Leave the field empty for no restrictions<br />
       <table border="0">
         <tr><td><label for="product_ids[]">Product Types: </label>
-                <select name="products_ids[]" multiple="multiple">
+                <select name="product_ids[]" multiple="multiple">
                   <?php foreach($products as $p){ ?>
                     <option value="<?php echo $p->get_id(); ?>"><?php echo $p->get_name(); ?></option>
                   <?php } ?>
@@ -59,7 +59,7 @@ include 'menu.php';
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
-          <td><em><?php echo $value; ?></em></td>
+          <td><em><?php echo ($key!="image"?$value:"<a target='_blank' href='show_image.php?id=$value'>$value</a>"); ?></em></td>
           <?php } ?>
         </tr>
     <?php } ?>

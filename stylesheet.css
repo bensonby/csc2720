@@ -264,3 +264,16 @@ h5{
   padding: 10px;
   height: 800px;
 }
+
+#admin-menu{
+  width: 200px;
+  float: left;
+}
+
+#admin-content{
+  padding-left: 5px;
+  margin-left: 5px;
+  width: 570px;
+  float: left;
+
+}

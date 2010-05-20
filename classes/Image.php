@@ -46,12 +46,15 @@ class Image {
     if($arr['error'] > 0) return -1;
     $allowed_types = array('image/jpeg', 'image/jpg', 'image/gif', 'image/png');
     if(!in_array($arr['type'], $allowed_types)) return -2;
+    if($arr['size']>100000) return -3;
+    $file_info = getimagesize($arr['tmp_name']);
+    if(empty($file_info)) return -4;
     $new_filename = time()."_".$arr['name'];
-    if(!move_uploaded_file($arr['tmp_name'], "images/$new_filename")) return -3;
+    if(!move_uploaded_file($arr['tmp_name'], "images/$new_filename")) return -5;
     if(file_exists($arr['tmp_name']) && is_file($arr['tmp_name'])) unlink($arr['tmp_name']);
     $image = new Image(array("path" => $new_filename, "owner" => $user->get_id()));
     $result = $image->save();
-    if(!$result) return -4;
+    if(!$result) return -6;
     return $result;
   }
 

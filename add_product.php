@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
   //handle add product request
   if($_POST["attr"]["image"]<=0) $_POST["attr"]["image"] = Image::process_image($_FILES['upload'], $user);
-  if($_POST["attr"]["image"]<=0) set_msg("Empty image file specified, Error code: {$_POST["attr"]["image"]}");
+  if($_POST["attr"]["image"]<=0) set_msg("Image Error: ".get_error_msg($_POST["attr"]["image"]));
   else{
     $result = add_product($user, $product, $_POST["attr"]);
     if($result){

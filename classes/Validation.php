@@ -33,6 +33,14 @@ class Validation {
       return false;
     return true;
   }
+
+  static function own_image($image_id, $uid){
+    $image_id = intval($image_id);
+    $result=sql("SELECT images.id FROM images WHERE images.id=$image_id AND (owner=0 OR owner=$uid)",
+                SQL_SINGLE_COL);
+    if(!count($result)==1) return false;
+    return true;
+  }
   
   static function cus_attrs($pid,$attrs){
     $result=sql("SELECT * FROM `products` WHERE attr_list LIKE '$attrs' and id=$pid");

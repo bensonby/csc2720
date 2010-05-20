@@ -27,14 +27,17 @@ if (!empty($order_id)){
   $cus_products=$cus_product_ids->get_cus_product();
   //Validation::testing("cus_product",$cus_products); 
   foreach($cus_products as $cp){
-    print $cp->get_id();
-    print $cp->get_quantity();
-    print $cp->get_product_id();
-    print $cp->get_name();
-    print $cp->get_description();
-    print $cp->get_price();
-    print $cp->get_sample_image();
-    print $cp->get_attr_list();
+    print $cp->get_id()."<br>";
+    print $cp->get_quantity()."<br>";
+    print $cp->get_product_id()."<br>";
+    print $cp->get_name()."<br>";
+    print $cp->get_description()."<br>";
+    print $cp->get_price()."<br>";
+    print $cp->get_sample_image()."<br>";
+    print $cp->get_attr_list()."<br>";
+    
+    $tmp=$cp->get_attr();
+    Validation::testing("attrs",$tmp);
     //var_dump($cp->get_attr());
     //print $cp->get_attr();
     print "<br>";

@@ -48,6 +48,10 @@ function get_msg(){
   return $message;
 }
 
+function has_msg(){
+  return !empty($_SESSION["msg"]);
+}
+
 function log2($msg){
   //internal error log
   $fp = fopen("log.txt", "a");

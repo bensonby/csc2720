@@ -28,8 +28,6 @@ include 'header.php';
 include 'menu.php';
 ?>
 
-<div id="message-block"><?php echo get_msg(); ?></div>
-
 <div id="sign-in-block">
   <form method="post" action="login.php">
     <p>

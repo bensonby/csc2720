@@ -7,7 +7,7 @@
     				<li><a href="cart.php">Cart</a></li>
     		<?php if($user){ ?>
         <?php if($user->is_admin()){ ?>
-            <li><a href="admin.php">Admin Panel</a></li>
+            <li><a href="admin_orders.php">Admin Panel</a></li>
         <?php } ?>
       <?php } ?>
       
@@ -35,7 +35,7 @@
     </li>
     <li>
     <div id="user">
-      Hello, <?php $user->get_name() ?>!
+      Hello, <?php echo $user->get_name(); ?>!
     </div>
     </li>
  <?php } ?>
@@ -43,6 +43,6 @@
     		</ul>
 	   </div>
 	   
-  <div class="message"><?php echo get_msg(); ?></div>         
+  <?php if(has_msg()){ ?><div class="message"><?php echo get_msg(); ?></div><? } ?>
   
   

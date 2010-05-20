@@ -5,10 +5,11 @@ include 'header.php';
 
 include 'menu.php';
 
-function remove($cp_id){
+function remove($cp_id,$order_id){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
   if ($val){
     $cus_pro=CusProduct::find($cp_id);
+    $order=Order::find($order_id);
     $order->remove_product($cus_pro);
   }
 }
@@ -18,7 +19,8 @@ function change($cp_id,$attrs){
 }
 
 if($_SERVER["REQUEST_METHOD"]=="GET"){
-  remove($_GET["id"]);}
+  if(!empty($_GET["id"]) and !empty($GET["oid"]))
+  remove($_GET["id"],$GET["oid"]);}
 
 $order_id=Order::get_orderid($_SESSION['user_id']);
 //echo get_msg();
@@ -58,8 +60,8 @@ if (!empty($order_id)){
           </td>
           <td class="up-and-low" rowspan="2">
             <div class="icons-container">
-              <a href="cart.php?id=<?php echo $p->get_id(); ?>">
-                <img src="images/cart-remove.png" />
+              <a href="cart.php?id=<?php echo $p->get_id(); ?>&oid=<?php echo $order_id; ?>">
+                <img src="images/cart-remove.png" />                                    
               </a>
             </div>
           </td>  

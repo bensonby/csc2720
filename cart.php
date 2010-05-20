@@ -5,8 +5,9 @@ include 'header.php';
 
 include 'menu.php';
 
-function remove($cp_id){
+function remove($order,$product){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
+  $order->remove_product($product);
 }
 
 function change($cp_id,$attrs){
@@ -34,12 +35,12 @@ if (!empty($order_id)){
     print $cp->get_description()."<br>";
     print $cp->get_price()."<br>";
     print $cp->get_sample_image()."<br>";
-    print $cp->get_attr_list()."<br>";
     
-    $tmp=$cp->get_attr();
-    Validation::testing("attrs",$tmp);
-    //var_dump($cp->get_attr());
-    //print $cp->get_attr();
+    print "<table>";
+    foreach($cp->get_custom() as $name=>$cus){
+      print "<tr><th>".$name."</th><td>".$cus."</td></tr>";    
+    }
+    print "</table>";
     print "<br>";
   }
   
@@ -47,6 +48,13 @@ if (!empty($order_id)){
   //print $cps[0]->get_id();
 }
 ?>
+
+<table>
+<?php
+
+?>
+
+</table>
 
 
 

@@ -17,8 +17,8 @@ include 'menu.php';
 ?>
 <div id="content">
 <?php var_dump($_POST); ?>
-  <h3>Admin Panel</h3>
-    <div id="admin-menu">
+  <div id="admin-menu">
+  <h2>Admin Panel</h2>
       <div class="admin-menu-item"><a href="admin_orders.php">List Orders</a></div>
       <div class="admin-menu-item"><a href="admin_orders_search.php">Search Orders</a></div>
       <div class="admin-menu-item"><a href="admin_cusproducts.php">List Customized Products</a></div>
@@ -26,7 +26,6 @@ include 'menu.php';
     </div>
     <div id="admin-content">
     </div>
-  </h3>
 </div>
 
 <?php

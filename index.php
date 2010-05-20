@@ -17,7 +17,7 @@ include 'menu.php';
 				<div id="index-main">
 					<h2>Promotional Items</h2>
 					<div class="index-promo-name-container">
-					   <h1>Cap</h1>
+					   <h4>Cap</h4>
 					</div>
 					<div class="index-promo-desc-container">
 					   Sold out 100 pieces in 30 days. ADD TO CART NOW!

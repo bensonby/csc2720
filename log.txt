@@ -1,9 +1,40 @@
-Time: 2010-05-19 12:22:25
+Time: 2010-05-19 15:47:42
 failed to get_orderid for user 
-------------------Time: 2010-05-19 12:23:12
+------------------Time: 2010-05-19 15:47:52
 failed to get_orderid for user 
-------------------Time: 2010-05-19 13:41:13
+------------------Time: 2010-05-19 15:48:38
 failed to get_orderid for user 
-------------------Time: 2010-05-19 13:52:11
+------------------Time: 2010-05-19 15:48:59
 failed to get_orderid for user 
-------------------
+-------------------------------------------------------------------------
+Time: 2010-05-20 03:24:03
+failed to get_orderid for user 
+Array
+(
+    [0] => Array
+        (
+            [file] => C:\xampplite\htdocs\csc2720\classes\Order.php
+            [line] => 137
+            [function] => log2
+            [args] => Array
+                (
+                    [0] => failed to get_orderid for user 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\xampplite\htdocs\csc2720\cart.php
+            [line] => 16
+            [function] => get_orderid
+            [class] => Order
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+)

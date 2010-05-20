@@ -289,6 +289,7 @@ border-collapse:collapse;
   border-style: solid;
   border-color: black;
       padding: 5px;
+  vertical-align: top;
 }
 .up{
   height: 15px;
@@ -303,5 +304,14 @@ border-collapse:collapse;
   border-style: solid;
   border-color: black;
       padding: 5px;
+  vertical-align: top;
+}
 
+#cart-attr-img-container img{
+  width: 100px;
+}
+
+.icons-container img{
+  width: 32px;
+  border: 0;
 }

@@ -7,6 +7,12 @@ if (!empty($order_id)){
   $cus_products=$order->get_cus_product();
 }
 
+if ($order->get_status=="completed"){
+
+  header("Location: index.php");
+  exit();  
+}
+
 if (empty($cus_products)){
   header("Location: cart.php");
   exit();
@@ -32,12 +38,20 @@ else{
   $error=true;
   $msg=$msg."Email format incorrect<br>";
 }
+if($_SERVER["REQUEST_METHOD"]=="POST")
+  if ($error)
+    set_msg("<h4>$msg</h4>");
+  else{
+    $order->set_status("checkout");
+    $order->update();
+    set_msg("<h4>Order completed</h4>");
 
-if ($error)
-  set_msg("<h4>$msg</h4>");
-else{
-  set_msg("<h4>Order completed</h4>");
-
+   /* if(!Order::get_orderid($user_id)){
+      $order = new Order();
+      $user->assign_order($order);
+      $order->save();
+    }
+*/
 }
 
 
@@ -47,30 +61,14 @@ include 'menu.php';
 ?>
 
 <div id="content">
- <h3>Checkout Form</h3> 
-  <form action="checkout.php" method="POST">
-     <table>
-       <tr>
-          <td class="row1">Name:</td>
-          <td class="row2"><input type="text" name="name" value="<?php echo $_POST["name"]; ?>" /> </td>
-       </tr>
-       <tr>
-          <td class="row1">Receiver's Address:</td>
-          <td class="row2"><input type="text" name="address" value="<?php echo $_POST["address"]; ?>" /> </td>
-       </tr>
-       <tr>
-          <td class="row1">Phone:</td>
-          <td class="row2"><input type="text" name="phone" value="<?php echo $_POST["phone"]; ?>" /> </td>
-       </tr>
-       <tr>
-          <td class="row1">email:</td>
-          <td class="row2"><input type="text" name="email" value="<?php echo $_POST["email"]; ?>"/> </td>
-       </tr>
-       <tr>
-          <td colspan="2"><input type="submit" value="Submit" /><input type="reset" value="Reset" /><input type="button" value="Back" /></td>
-       </tr>
-     </table>
-  </form>
+<?php 
+if ($order->get_status()=="created")
+  include 'checkout_form.php';
+else
+{
+ echo "done";
+}
+?>
 </div>
 
 <?php

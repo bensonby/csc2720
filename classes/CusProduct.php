@@ -132,8 +132,7 @@ abstract class CusProduct {
     for($i=0; $i<count($product_ids); $i++) $product_ids[$i] = intval($product_ids[$i]);
     $str = empty($product_ids)?"":"AND c.product_id IN (".implode(",", $product_ids).")";
     $query = "SELECT c.id FROM cus_products c, orders o, order_products p
-              WHERE c.id = p.cus_product_id AND o.id = p.order_id $str";
-//AND o.status="complete"
+              WHERE c.id = p.cus_product_id AND o.id = p.order_id AND o.status='completed' $str";
     $result = sql($query, SQL_SINGLE_COL);
     if(!$result){
       log2("sql error! -- ".mysql_error().": $query");

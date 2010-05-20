@@ -259,9 +259,10 @@ class Order {
     $email_sql = "";
     if(!empty($info["email"])) $email_sql = "email = '{$info["email"]}'";
 
-    if(!empty($time_sql) && !empty($email_sql)) $where_sql = "WHERE (".$time_sql.") ".$info["andor"]." $email_sql";
-    else if(!empty($time_sql)|| !empty($email_sql)) $where_sql = "WHERE $time_sql $email_sql";
-    $result = sql("SELECT id FROM orders $where_sql", SQL_SINGLE_COL);
+    if(!empty($time_sql) && !empty($email_sql)) $where_sql = " AND (".$time_sql.") ".$info["andor"]." $email_sql";
+    else if(!empty($time_sql)|| !empty($email_sql)) $where_sql = " AND $time_sql $email_sql";
+    else $where_sql = "";
+    $result = sql("SELECT id FROM orders WHERE status='completed' $where_sql ORDER BY time DESC", SQL_SINGLE_COL);
     if(!$result){
       log2("SQL Execution Error -- ".mysql_error().": SELECT id FROM orders $where_sql");
       return array();
@@ -271,5 +272,12 @@ class Order {
     foreach($result as $id) $ret[] = Order::find($id);
     return $ret;
   }
-    
+
+  function set_status($var){
+    $this->info["status"] = $var;
+  }
+
+  function get_status(){
+    return $this->info["status"];
+  }
 }

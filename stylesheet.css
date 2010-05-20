@@ -275,5 +275,33 @@ h5{
   margin-left: 5px;
   width: 570px;
   float: left;
+}
+.collapse{
+border-collapse:collapse;
+}
+#show-cart-table{
+  height: 20px;
+  font-weight: bold;
+}
+
+.up-and-low{
+  border-width: 3px 0;
+  border-style: solid;
+  border-color: black;
+      padding: 5px;
+}
+.up{
+  height: 15px;
+  background-color: #E2E2E2;
+  border-width: 3px 0 0 0;
+  border-style: solid;
+  border-color: black;
+      padding: 5px;
+}
+.low{
+  border-width: 0 0 3px 0;
+  border-style: solid;
+  border-color: black;
+      padding: 5px;
 
 }

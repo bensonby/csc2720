@@ -182,6 +182,34 @@ class Order {
   function get_cus_product(){
     return $this->cus_products;
   }  
+
+  function get_user(){
+    return $this->info["user"];
+  }
+
+  function get_time(){
+    return $this->info["time"];
+  }
+
+  function get_name(){
+    return $this->info["name"];
+  }
+
+  function get_address(){
+    return $this->info["address"];
+  }
+
+  function get_email(){
+    return $this->info["email"];
+  }
+
+  function get_phone(){
+    return $this->info["phone"];
+  }
+
+  function get_price(){
+    return $this->info["price"];
+  }
   
   function set_address($address){
     if (!empty($address)){

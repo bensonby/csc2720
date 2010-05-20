@@ -88,8 +88,6 @@ function modify_product($user, $product, $attrs){
   foreach($_POST["attr"] as $t=>$v)
     if ($t!="quantity")
       $ret[$t]=$v;
-  Validation::testing("before",$cusproduct->get_custom());
-  Validation::testing("modify",$ret);
   //exit();
   $cusproduct->set_custom($ret);//{ $this->custom=$var; }
   

@@ -74,11 +74,6 @@ abstract class CusProduct {
       $str = dbstr(array('attr_name' => $attr,
                          'cus_product_id' => $this->info["id"]
                    ), " and ", true);
-      Validation::testing("sql1",$attr);       
-      Validation::testing("sql2",$this->custom[$attr]);
-      Validation::testing("sql3",$str);
-      print "UPDATE attrs SET attr_value = {$this->custom[$attr]}
-                     WHERE $str";
       $result = sql("UPDATE attrs SET attr_value = '{$this->custom[$attr]}'
                      WHERE $str");
       if(!$result) return false;

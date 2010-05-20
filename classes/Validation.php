@@ -26,13 +26,26 @@ class Validation {
   }
   
   static function own_cus_product($cp_id,$uid){
-    $result=sql("SELECT orders.id 
+    if(!(string)(int)$cp_id == (string)$cp_id) return false;
+    $result=sql("SELECT od.id 
                  FROM orders od, order_products op 
-                 WHERE od.user_id=$uid and od.id=op.order_id and op.cus_product_id=$cp_id");
+                 WHERE od.user_id=$uid and od.status='created' and od.id=op.order_id and op.cus_product_id=$cp_id");
     if (!count($result)==1)
       return false;
     return true;
   }
+
+  static function own_order($cp_id,$uid){
+    if(!(string)(int)$cp_id == (string)$cp_id) return false;
+    $result=sql("SELECT od.id 
+                 FROM orders od, order_products op 
+                 WHERE od.user_id=$uid and od.status='created' and od.id=op.order_id and op.cus_product_id=$cp_id");
+    if (!count($result)==1)
+      return false;
+    return true;
+  }
+
+
 
   static function own_image($image_id, $uid){
     $image_id = intval($image_id);

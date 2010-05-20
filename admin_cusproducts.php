@@ -53,7 +53,14 @@ include 'menu.php';
       <tr>
         <td><a href="admin_cusproduct.php?id=<?php echo $p->get_id(); ?>">details</a></td>
         <td><?php echo $p->get_id(); ?></td>
-        <td><?php var_dump($p); ?></td>
+        <td><?php echo $p->find_username(); ?></td>
+        <td><?php echo $p->get_name(); ?></td>
+        <td><?php echo $p->get_quantity(); ?></td>
+        
+        <td><?php foreach($p->get_custom() as $key=>$value){ ?>
+              <?php echo $key; ?>: <em><?php echo $value; ?></em><br />
+            <?php } ?>
+        </td>
       </tr>
   <?php } ?>
   <?php } ?>

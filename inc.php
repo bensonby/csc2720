@@ -61,6 +61,40 @@ function log2($msg){
   fclose($fp);
 }
 
+function display_form_attr($user, $cusproduct, $old_inputs){
+  $ret = "";
+  if(!$cusproduct instanceof CusProduct) return "";
+  $attr = $cusproduct->get_attr();
+  foreach($attr as $key=>$values){
+    $ret.="<tr><td class='row1'><label for='attr[$key]'>".ucwords($key)."</label></td><td class='row2'>\n";
+    if($key=="image"){
+//      $ret.="<input type='file' name='attr[$key]' />\n";
+      $ret.="<input type='radio' name='attr[$key]' value='0' />Upload your own photo:\n";
+      $ret.="<input type='file' name='upload' /><br />\n";
+      $ret.="Or select from below:<br />\n";
+      $images = Image::get_available_images($user->get_id());
+      $ret.="<div id='product-browse-images'>\n";
+      foreach($images as $image){
+        $checked = ($old_inputs["attr"][$key] == $image->get_id() ? "checked='checked'" : "");
+        $ret.="<input type='radio' name='attr[$key]' value='{$image->get_id()}' $checked/>";
+        $ret.="<img src='images/{$image->get_path()}' alt='images/{$image->get_path()}' />";
+      }
+      $ret.="</div>\n";                   
+    }else if($key=="text"){
+      $ret.="<input type='text' name='attr[$key]' maxlength='$values' 
+              value='{$old_inputs["attr"][$key]}' />\n";
+    }else{
+      foreach($values as $value){
+        $checked = ($old_inputs["attr"][$key] == $value ? "checked='checked'" : "");
+        $ret.="<input type='radio' name='attr[$key]' value='$value' $checked /> $value \n";
+      }
+    }
+    $ret.="</tr>\n";
+  }
+  return $ret;
+    
+}
+
 //a set of string functions
    function after ($this, $inthat)
    {

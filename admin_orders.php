@@ -52,6 +52,9 @@ include 'menu.php';
     </form>
 
     <h2>Committed Order Details</h2>
+    <?php if(empty($orders)){ ?>
+      No orders found. Please try another search.
+    <?php }else{ ?>
     <table border="0">
       <tr><td>ID</td><td>User</td><td>Time</td><td>Name</td><td>Address</td><td>Email</td><td>Phone</td><td>Price</td></tr>
     <?php foreach($orders as $order){ ?>
@@ -67,7 +70,7 @@ include 'menu.php';
       </tr>
     <?php } ?>
     </table>
-
+    <?php } ?>
   </div>
 </div>
 

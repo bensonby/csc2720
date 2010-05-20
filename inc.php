@@ -3,6 +3,7 @@ define("SQL_SINGLE_VALUE",  1000);
 define("SQL_SINGLE_ROW",    1001);
 define("SQL_SINGLE_COLUMN", 1002);
 define("SQL_MULTIPLE_ROWS", 1003);
+$allowed_for_guests = array("index.php", "about.php", "contact.php", "products.php");
 
 session_start();
 
@@ -13,6 +14,12 @@ Mysql::connect("localhost", "csc2720", "addoil", "csc2720");
 
 
 $user = User::logged_in_user();
+if(!$user instanceof User && 
+   !in_array(after_last("/", $_SERVER["SCRIPT_NAME"]), $allowed_for_guests)){
+  set_msg("Please login first");
+  header("Location: index.php");
+  exit();
+}
 
 function myclass__autoload($class_name){
   if(file_exists("classes/$class_name.php")){

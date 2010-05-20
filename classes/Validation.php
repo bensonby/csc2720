@@ -18,7 +18,7 @@ class Validation {
   }
   
   static function name($subject){
-    $pattern = '/^[A-Za-z][A-Za-z ]+[A-Za-z]$/';
+    $pattern = '/^[A-Za-z]+[A-Za-z ]*[A-Za-z]*$/';
     $num=preg_match($pattern, $subject); 
     if ($num==0)
         return false;

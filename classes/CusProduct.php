@@ -22,6 +22,7 @@ abstract class CusProduct {
         throw new Exception("Hacking Attempt -- invalid value of attribute $key");
       $this->custom[$key]=$attrs[$key];
     }
+    if(!is_array($this->info["attr_list"])) $this->info["attr_list"] = explode(',', $this->info["attr_list"]);
     $this->find_user();
   }
 

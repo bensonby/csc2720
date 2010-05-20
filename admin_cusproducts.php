@@ -43,24 +43,25 @@ include 'menu.php';
     <?php if(empty($cus_products)){ ?>
       No results found. Please try another search.
     <?php }else{ ?>
-      <table border="0">
-        <tr><td>Details</td><td>ID</td><td>User</td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
+      <table border="0" class="collapse">
+        <tr class="show-table"><td>Details</td><td>ID</td><td>User</td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
     <?php  foreach($cus_products as $p){ ?>
         <tr>
-          <td rowspan="2"><a href="admin_cusproduct.php?id=<?php echo $p->get_id(); ?>">details</a></td>
-          <td rowspan="2"><?php echo $p->get_id(); ?></td>
-          <td rowspan="2"><?php echo $p->find_username(); ?></td>
-          <td rowspan="2"><?php echo $p->get_name(); ?></td>
-          <td rowspan="2"><?php echo $p->get_quantity(); ?></td>
+          <td class="up-and-low" rowspan="2"><a href="admin_cusproduct.php?id=<?php echo $p->get_id(); ?>">details</a></td>
+          <td class="up-and-low" rowspan="2"><?php echo $p->get_id(); ?></td>
+          <td class="up-and-low" rowspan="2"><?php echo $p->find_username(); ?></td>
+          <td class="up-and-low" rowspan="2"><?php echo $p->get_name(); ?></td>
+          <td class="up-and-low" rowspan="2"><?php echo $p->get_quantity(); ?></td>
           
           <?php foreach($p->get_custom() as $key=>$value){ ?>
-          <td><?php echo $key; ?></td>
+          <td class="up"><?php echo $key; ?></td>
           <?php } ?>
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
-          <td><em><?php echo ($key!="image"?$value:"<a target='_blank' href='show_image.php?id=$value'>$value</a>"); ?></em></td>
+          <td class="low"><em><?php echo ($key!="image"?$value:"<a target='_blank' href='show_image.php?id=$value'>$value</a>"); ?></em></td>
           <?php } ?>
+          <?php echo str_repeat("<td class='low'> </td>", 5-count($p->get_attr_list())); ?>
         </tr>
     <?php } ?>
     <?php } ?>

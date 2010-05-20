@@ -17,6 +17,9 @@ function change($cp_id,$attrs){
   //$val=Validation::cus_attrs($pid,$attrs);
 }
 
+if($_SERVER["REQUEST_METHOD"]=="GET"){
+  remove($_GET["id"]);}
+
 $order_id=Order::get_orderid($_SESSION['user_id']);
 //echo get_msg();
 //$a=Order::find($order_id);
@@ -39,36 +42,39 @@ if (!empty($order_id)){
 ?>
 
 <div id="content">
-<h2>Your Cart</h2>
+<h3>Your Cart</h3>
 <?php if (!empty($order_id)){ ?>    
     <table border="0" class="collapse">
-        <tr id="show-cart-table"><td>Product</td><td>Quantity</td><td>Attributes</td><td></td><td></td></tr>
+        <tr class="show-table"><td></td><td></td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
     <?php  foreach($cus_products as $p){ ?>
     <tbody>
         <tr>
+        <td class="up-and-low" rowspan="2">
+            <div class="icons-container">
+              <a href="edit_product.php?id=<?php echo $p->get_id(); ?>">
+                <img src="images/modify.gif" />
+                </a>
+            </div>
+          </td>
+          <td class="up-and-low" rowspan="2">
+            <div class="icons-container">
+              <a href="cart.php?id=<?php echo $p->get_id(); ?>">
+                <img src="images/cart-remove.png" />
+              </a>
+            </div>
+          </td>  
           <td class="up-and-low" rowspan="2"><?php echo $p->get_name(); ?></td>
           <td class="up-and-low" rowspan="2"><?php echo $p->get_quantity(); ?></td>
           
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="up"><?php echo $key; ?></td>
           <?php } ?>
-          <td class="up-and-low" rowspan="2">
-            <div class="icons-container">
-              <a href="edit_product.php?id=<?php echo $p->get_id(); ?>">
-                <img src="images/modify.gif">
-                </a>
-            </div>
-          </td>
-          <td class="up-and-low" rowspan="2">
-            <div class="icons-container">
-              <img src="images/cart-remove.png">
-            </div>
-          </td>  
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="low"><em><?php echo ($key!="image"?$value:"<div id='cart-attr-img-container'><img src='show_image.php?id=$value' /></div>"); ?></em></td>
           <?php } ?>
+          <?php echo str_repeat("<td class='low'> </td>", 5-count($p->get_attr_list())); ?>
         </tr>
       </tbody>
     <?php } ?>

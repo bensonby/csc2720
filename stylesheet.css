@@ -279,7 +279,7 @@ h5{
 .collapse{
 border-collapse:collapse;
 }
-#show-cart-table{
+.show-table{
   height: 20px;
   font-weight: bold;
 }

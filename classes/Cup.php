@@ -1,10 +1,10 @@
 <?php
 
 class Cup extends CusProduct {
-  protected $attr=array("size"=>array('Small', 'Medium', 'Large'),
+  protected $attr=array("image"=>'hello.jpg',
+                        "size"=>array('Small', 'Medium', 'Large'),
                         "handle style"=>array('type 1', 'type 2', 'type 3'),
-                        "color" => array("White", "Yellow", "Blue", "Green", "Pink"),
-                        "image"=>'hello.jpg'
+                        "color" => array("White", "Yellow", "Blue", "Green", "Pink")
                        );
 
 }

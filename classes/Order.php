@@ -153,18 +153,17 @@ class Order {
 
   function remove_product($cus_product){
     if(!$this->is_saved() || !$cus_product->is_saved() || !$cus_product instanceof CusProduct){
-      log2('error: add_product to cart');
+       log2('error: add_product to cart');
       return false;
     }
     $str = dbstr(array('order_id' => $this->info["id"],
                        'cus_product_id' => $cus_product->get_id()
-                 ), " and ", true);
+                 ), " AND ", true);
     $result = sql("DELETE FROM order_products WHERE $str");
     if(!$result){
       log2('SQL execution error -- '.mysql_error());
       return false;
     }
-    //$cus_product->delete();
     return true;
   }
   
@@ -215,4 +214,34 @@ class Order {
     }
     return false;
   }
+
+  static function search($info){ //array with keys: time_start, time_end, andor, email
+    $info["email"] = mysql_real_escape_string($info["email"]);
+
+    if(!preg_match('/^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/', $info["time_start"]))
+      $info["time_start"] = "";
+    if(!preg_match('/^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/', $info["time_end"]))
+      $info["time_end"] = "";
+    if($info["andor"]!="and" && $info["andor"]!="or") $info["andor"]="and";
+
+    $time_sql = "";
+    if(!empty($info["time_start"])) $time_sql = "time >= '{$info["time_start"]}'";
+    if(!empty($info["time_start"])) $time_sql.= (!empty($time_sql)?" AND ":"")."time <= '{$info["time_end"]}'";
+    
+    $email_sql = "";
+    if(!empty($info["email"])) $email_sql = "email = '{$info["email"]}'";
+
+    if(!empty($time_sql) && !empty($email_sql)) $where_sql = "WHERE (".$time_sql.") ".$info["andor"]." $email_sql";
+    else if(!empty($time_sql)|| !empty($email_sql)) $where_sql = "WHERE $time_sql $email_sql";
+    $result = sql("SELECT id FROM orders $where_sql", SQL_SINGLE_COL);
+    if(!$result){
+      log2("SQL Execution Error -- ".mysql_error().": SELECT id FROM orders $where_sql");
+      return array();
+    }
+
+    $ret = array();
+    foreach($result as $id) $ret[] = Order::find($id);
+    return $ret;
+  }
+    
 }

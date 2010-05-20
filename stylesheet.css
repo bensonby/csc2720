@@ -70,7 +70,8 @@ body{
 }
 
 #content{
-	width: 800px;
+	width: 790px;
+	padding: 5px;
 	height: 1200px;
 	background-color: #FFFFFF;
 	margin: 0;
@@ -188,7 +189,7 @@ h3{
   margin: 0;
   padding-left: 5px;
 	background-color: #BF0000;
-	width: 795px;
+	width: 785px;
 	height: 20px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -219,7 +220,7 @@ h5{
 
 
 }
-.features{
+.row1{
   text-align: right;
   font-weight: bold;
   width: 100px;
@@ -229,12 +230,12 @@ h5{
   padding: 5px;
   }
   
-.input{
+.row2{
   width: 650px;
   padding: 5px;
 }
 
-.input img{
+.row2 img{
  height: 180px;
 }
 

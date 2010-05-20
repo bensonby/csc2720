@@ -52,10 +52,10 @@ include 'menu.php';
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
           <table border="0">
             <tr>
-              <td class="features">
+              <td class="row1">
                 <label for="attr[quantity]">Quantity</label>
               </td>
-              <td class="input">
+              <td class="row2">
                 <input type="text" name="attr[quantity]" value="<?php echo $_POST["attr"]["quantity"]; ?>" />
               </td>
             </tr>
@@ -77,7 +77,7 @@ function display_form_attr($user, $cusproduct, $old_inputs){
   if(!$cusproduct instanceof CusProduct) return "";
   $attr = $cusproduct->get_attr();
   foreach($attr as $key=>$values){
-    $ret.="<tr><td class='features'><label for='attr[$key]'>".ucwords($key)."</label></td><td class='input'>\n";
+    $ret.="<tr><td class='row1'><label for='attr[$key]'>".ucwords($key)."</label></td><td class='row2'>\n";
     if($key=="image"){
 //      $ret.="<input type='file' name='attr[$key]' />\n";
       $ret.="<input type='radio' name='attr[$key]' value='0' />Upload your own photo:\n";

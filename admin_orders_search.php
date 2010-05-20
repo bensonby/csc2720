@@ -16,8 +16,8 @@ include 'menu.php';
 
 ?>
 <div id="content">
-  <h3>Admin Panel</h3>
-    <div id="admin-menu">
+  <div id="admin-menu">
+  <h2>Admin Panel</h2>
       <div class="admin-menu-item"><a href="admin_orders.php">List Orders</a></div>
       <div class="admin-menu-item"><a href="admin_orders_search.php">Search Orders</a></div>
       <div class="admin-menu-item"><a href="admin_cusproducts.php">List Customized Products</a></div>
@@ -25,7 +25,7 @@ include 'menu.php';
     </div>
     <div id="admin-content">
       <form id="admin-orders-search-form" action="admin_orders.php" method="post">
-        <h3>Search Customer Orders</h3>
+        <h2>Search Customer Orders</h2>
         Leave the fields empty for no restrictions<br />
         <table border="0">
           <tr><td>Time Period</td>
@@ -49,7 +49,6 @@ include 'menu.php';
        <input type="submit" name="submit" value="Search Orders" />
       </form>
     </div>
-  </h3>
 </div>
 
 <?php

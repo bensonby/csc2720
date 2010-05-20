@@ -307,6 +307,10 @@ border-collapse:collapse;
   vertical-align: top;
 }
 
+.price {
+  text-align: right;
+}
+
 #cart-attr-img-container img{
   width: 100px;
 }
@@ -316,11 +320,17 @@ border-collapse:collapse;
   border: 0;
 }
 #checkout-icon-container{
+  float: right;
   padding: 5px;
 }
 #checkout-icon-container img{
-  width: 100px;
+  width: 120px;
   border: 0;
+}
+#checkout-price{
+  font-size: 20px;
+  float: right;
+  margin: 5px;
 }
 #checkout-button-container{
   padding: 2px;

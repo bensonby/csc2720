@@ -20,12 +20,6 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     remove($_GET["id"],$_GET["oid"]);}
 
 $order_id=Order::get_orderid($_SESSION['user_id']);
-//echo get_msg();
-//$a=Order::find($order_id);
-//echo "<pre>\n";
-//var_dump($a);
-//echo "</pre>\n";
-//die();
 
 if (!empty($order_id)){
   $order=Order::find($order_id);
@@ -47,7 +41,8 @@ include 'menu.php';
 <h3>Your Cart</h3>
 <?php if (!empty($cus_products)){ ?>    
     <table border="0" class="collapse">
-        <tr class="show-table"><td></td><td></td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
+        <tr class="show-table"><td></td><td></td><td>Product</td><td>Quantity</td><td>Attributes</td>
+                               <td> </td><td> </td><td> </td><td> </td><td>Unit Price</td><td>Sub Total</td></tr>
     <?php  foreach($cus_products as $p){ ?>
     <tbody>
         <tr>
@@ -72,6 +67,8 @@ include 'menu.php';
           <td class="up"><?php echo $key; ?></td>
           <?php } ?>
           <?php echo str_repeat("<td class='up-and-low' rowspan='2'> </td>", 5-count($p->get_attr_list())); ?>
+          <td class="up-and-low price" rowspan="2"><?php echo $p->get_price(); ?></td>
+          <td class="up-and-low price" rowspan="2"><?php echo $p->get_price()*$p->get_quantity(); ?></td>
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
@@ -83,8 +80,9 @@ include 'menu.php';
     <?php } ?>
      </table>
     <div id="checkout-icon-container">
-      <a href="checkout.php"><img src="images/checkout.gif"/></a>
+          <a href="checkout.php"><img src="images/checkout.gif"/></a>
     </div>
+    <div id="checkout-price">Total Price: HKD <?php echo $order->get_price(); ?></div>
     <?php } ?>
 </div>
 <?php

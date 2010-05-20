@@ -315,3 +315,11 @@ border-collapse:collapse;
   width: 32px;
   border: 0;
 }
+#checkout-icon-container{
+  padding: 5px;
+}
+#checkout-icon-container img{
+  width: 100px;
+  border: 0;
+
+}

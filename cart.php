@@ -71,15 +71,20 @@ include 'menu.php';
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="up"><?php echo $key; ?></td>
           <?php } ?>
+          <?php echo str_repeat("<td class='up-and-low' rowspan='2'> </td>", 5-count($p->get_attr_list())); ?>
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="low"><em><?php echo ($key!="image"?$value:"<div id='cart-attr-img-container'><img src='show_image.php?id=$value' /></div>"); ?></em></td>
           <?php } ?>
-          <?php echo str_repeat("<td class='low'> </td>", 5-count($p->get_attr_list())); ?>
+          
         </tr>
       </tbody>
     <?php } ?>
+     </table>
+    <div id="checkout-icon-container">
+      <a href="checkout.php"><img src="images/checkout.gif"/></a>
+    </div>
     <?php } ?>
 </div>
 <?php

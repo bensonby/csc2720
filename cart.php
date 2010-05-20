@@ -1,9 +1,6 @@
 <?php
 include 'inc.php';
 
-include 'header.php';
-
-include 'menu.php';
 
 function remove($cp_id,$order_id){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
@@ -34,18 +31,21 @@ if (!empty($order_id)){
   $order=Order::find($order_id);
   
   $cus_products=$order->get_cus_product();
-  //Validation::testing("cus_product",$cus_products); 
-  
-  //Validation::testing("cart ",$cus_product_ids[0]->$cus_products);
-  //print $cps[0]->get_id();
-}else{
+}
+
+if (empty($cus_products)){
   set_msg("<h4>Your cart is empty. Click PRODUCTS to buy something.</h4>");
 }
+
+
+include 'header.php';
+
+include 'menu.php';
 ?>
 
 <div id="content">
 <h3>Your Cart</h3>
-<?php if (!empty($order_id)){ ?>    
+<?php if (!empty($cus_products)){ ?>    
     <table border="0" class="collapse">
         <tr class="show-table"><td></td><td></td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
     <?php  foreach($cus_products as $p){ ?>

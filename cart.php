@@ -5,9 +5,12 @@ include 'header.php';
 
 include 'menu.php';
 
-function remove($order,$product){
+function remove($cp_id){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
-  $order->remove_product($product);
+  if ($val){
+    $cus_pro=CusProduct::find($cp_id);
+    $order->remove_product($cus_pro);
+  }
 }
 
 function change($cp_id,$attrs){
@@ -44,8 +47,8 @@ if (!empty($order_id)){
     print "<br>";
   }
   
-  //Validation::testing("cart ",$cus_product_ids[0]->$cus_products);
-  //print $cps[0]->get_id();
+$val=Validation::own_cus_product(2,$_SESSION["user_id"]);
+var_dump($val);
 }
 ?>
 

@@ -159,5 +159,8 @@ abstract class CusProduct {
   function get_attr(){ return $this->attr; }
   function get_custom(){ return $this->custom; }
   function find_username(){ return $this->user->get_name();  }
+  
+  function set_quantity($var){$this->info["quantity"]=$var;}
+  function set_custom($var){ $this->custom=$var; }
 }
 ?>

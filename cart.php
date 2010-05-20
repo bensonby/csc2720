@@ -5,12 +5,9 @@ include 'header.php';
 
 include 'menu.php';
 
-function remove($cp_id){
+function remove($order,$product){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
-  if ($val){
-    $cus_pro=CusProduct::find($cp_id);
-    $order->remove_product($cus_pro);
-  }
+  $order->remove_product($product);
 }
 
 function change($cp_id,$attrs){
@@ -26,45 +23,54 @@ $order_id=Order::get_orderid($_SESSION['user_id']);
 //die();
 
 if (!empty($order_id)){
-  $cus_product_ids=Order::find($order_id);
+  $order=Order::find($order_id);
   
-  $cus_products=$cus_product_ids->get_cus_product();
+  $cus_products=$order->get_cus_product();
   //Validation::testing("cus_product",$cus_products); 
-  foreach($cus_products as $cp){
-    print $cp->get_id()."<br>";
-    print $cp->get_quantity()."<br>";
-    print $cp->get_product_id()."<br>";
-    print $cp->get_name()."<br>";
-    print $cp->get_description()."<br>";
-    print $cp->get_price()."<br>";
-    print $cp->get_sample_image()."<br>";
-    
-    print "<table>";
-    foreach($cp->get_custom() as $name=>$cus){
-      print "<tr><th>".$name."</th><td>".$cus."</td></tr>";    
-    }
-    print "</table>";
-    print "<br>";
-  }
   
-$val=Validation::own_cus_product(2,$_SESSION["user_id"]);
-var_dump($val);
+  //Validation::testing("cart ",$cus_product_ids[0]->$cus_products);
+  //print $cps[0]->get_id();
+}else{
+  set_msg("<h4>Your cart is empty. Click PRODUCTS to buy something.</h4>");
 }
 ?>
 
-<table>
-<?php
-
-?>
-
-</table>
-
-
-
-
-
-
-
+<div id="content">
+<h2>Your Cart</h2>
+<?php if (!empty($order_id)){ ?>    
+    <table border="0" class="collapse">
+        <tr id="show-cart-table"><td>Product</td><td>Quantity</td><td>Attributes</td><td></td><td></td></tr>
+    <?php  foreach($cus_products as $p){ ?>
+    <tbody>
+        <tr>
+          <td class="up-and-low" rowspan="2"><?php echo $p->get_name(); ?></td>
+          <td class="up-and-low" rowspan="2"><?php echo $p->get_quantity(); ?></td>
+          
+          <?php foreach($p->get_custom() as $key=>$value){ ?>
+          <td class="up"><?php echo $key; ?></td>
+          <?php } ?>
+          <td class="up-and-low" rowspan="2">
+            <div class="icons-container">
+              <a href="edit_product.php?id=<?php echo $p->get_id(); ?>">
+                <img src="images/modify.gif">
+                </a>
+            </div>
+          </td>
+          <td class="up-and-low" rowspan="2">
+            <div class="icons-container">
+              <img src="images/cart-remove.png">
+            </div>
+          </td>  
+        </tr>
+        <tr>
+          <?php foreach($p->get_custom() as $key=>$value){ ?>
+          <td class="low"><em><?php echo ($key!="image"?$value:"<div id='cart-attr-img-container'><img src='show_image.php?id=$value' /></div>"); ?></em></td>
+          <?php } ?>
+        </tr>
+      </tbody>
+    <?php } ?>
+    <?php } ?>
+</div>
 <?php
 include 'footer.php';
 ?>

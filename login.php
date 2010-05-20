@@ -9,11 +9,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   if($user_id){
     $_SESSION['user_id'] = $user_id;
     $user = new User($user_id);
-    //to assign a new cart to a user on re-login -- an assumption in project
-
-    //$order = new Order();
-    //$user->assign_order($order);
-    //$order->save();
+    //to assign a new cart to a user if there are no carts
+    if(!Order::get_orderid($user_id)){
+      $order = new Order();
+      $user->assign_order($order);
+      $order->save();
+    }
 
     header("Location: index.php");
     exit();
@@ -27,9 +28,7 @@ include 'header.php';
 include 'menu.php';
 ?>
 
-<div id="message-block">
-  <?=get_msg() ?>
-</div>
+<div id="message-block"><?php echo get_msg(); ?></div>
 
 <div id="sign-in-block">
   <form method="post" action="login.php">

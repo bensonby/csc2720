@@ -129,15 +129,10 @@ class Order {
   }
   
   static function get_orderid($user_id){
-//    $result=sql("SELECT id FROM orders WHERE user_id={$user_id}");
-//    if (!count($result)==1) return false;
-//    else return intval($result[0]);
-    $result=sql("SELECT id FROM orders WHERE user_id={$user_id} ORDER BY time DESC LIMIT 1", SQL_SINGLE_VALUE);
-    if(!$result){
-      log2("failed to get_orderid for user $user_id");
-      return false;
-    }
-    return intval($result);
+    $result=sql("SELECT id FROM orders WHERE user_id={$user_id} AND status='created'
+                   ORDER BY time DESC LIMIT 1", SQL_SINGLE_COL);
+    if (!count($result)==1) return false;
+    else return intval($result[0]);
   }
 
   function add_product($cus_product){

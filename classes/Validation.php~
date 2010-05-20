@@ -42,9 +42,9 @@ class Validation {
   }
   
   static function testing($var){
-    print "<br><b> test start=> </b>";
+    print "<br><red> test start=> </red>";
     var_dump($var);
-    print " <=<b>test end</b><br>";
+    print " <=<red>test end</red><br>";
   }
   
 

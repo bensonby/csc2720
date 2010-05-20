@@ -35,7 +35,7 @@ class Validation {
   }
   
   static function cus_attrs($pid,$attrs){
-    result=sql("SELECT * FROM `products` WHERE attr_list LIKE '$attrs' and id=$pid");
+    $result=sql("SELECT * FROM `products` WHERE attr_list LIKE '$attrs' and id=$pid");
     if (!count($result)==1)
       return false;
     return true;

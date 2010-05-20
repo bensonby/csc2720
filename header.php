@@ -5,8 +5,8 @@
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <link href="stylesheet.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="scripts/prototype.js"></script>
-    <script type="text/javascript" src="scripts/scriptaculous.js"></script>
     <script type="text/javascript" src="scripts/scripts.js"></script>
+    <script type="text/javascript" src="scripts/calendarDateInput.js"></script>
   </head>
   <body>
      	<div id="logo">

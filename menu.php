@@ -1,10 +1,10 @@
 	<div id="menu">
     		<ul>
     				<li><a href="index.php">Home</a></li>
-    				<li><a href="products.php">Products</a></li>
     				<li><a href="about.php">About</a></li>
-    				<li><a href="contact.php">Contact</a></li>
+    				<li><a href="products.php">Products</a></li>
     				<li><a href="cart.php">Cart</a></li>
+    				<li><a href="contact.php">Contact</a></li>
     		<?php if($user){ ?>
         <?php if($user->is_admin()){ ?>
             <li><a href="admin_orders.php">Admin Panel</a></li>

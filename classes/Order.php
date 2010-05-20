@@ -1,7 +1,10 @@
 <?php
 class Order {
   private $info = array(); //id, user, status, time, name, address, email, phone, price
+//  private $id;
   private $cus_products = array();
+//  private $user;
+//  private $status="", $time="", $name="", $address="", $email="", $phone="", $price=0.0;
 
   function __construct(){
     $this->info = array("id" => '',
@@ -23,10 +26,6 @@ class Order {
     $this->info["price"] = $price;
   }
 
-  function get_cus_products(){
-    return $this->cus_products;
-  }
-
   function assign_user($user){
     if(!$user instanceof User){
       log2('invalid object as a class of User when assigning user to an order');
@@ -38,10 +37,6 @@ class Order {
 
   function is_saved(){
     return !empty($this->info["id"]);
-  }
-
-  function get_id(){
-    return $this->info["id"];
   }
 
   function save(){
@@ -129,6 +124,7 @@ class Order {
     return $order;
   }
   
+  
   static function get_orderid($user_id){
     $result=sql("SELECT id FROM orders WHERE user_id={$user_id} AND status='created'
                    ORDER BY time DESC LIMIT 1", SQL_SINGLE_COL);
@@ -179,9 +175,13 @@ class Order {
     return false;
   }
   
+  function get_id(){
+    return $this->info["id"];
+  }
+  
   function get_cus_product(){
     return $this->cus_products;
-  }
+  }  
   
   function set_address($address){
     if (!empty($address)){

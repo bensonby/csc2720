@@ -27,7 +27,7 @@ include 'menu.php';
       <div class="products-buy-container">
         <a onclick="show_product_box(<?php echo $product->get_id(); ?>); return false" 
            href="add_product.php?id=<?php echo $product->get_id(); ?>">
-          <img src="images/cart.gif" alt="cart icon" /> Add to Cart
+          <img src="images/cart.png" alt="cart icon" /> Add to Cart
         </a>
       </div>
     </div>

@@ -20,8 +20,8 @@ include 'menu.php';
 <div id="content">
   <div id="admin-menu">
     <h2>Admin Panel</h2>
-    <div class="admin-menu-item"><a href="admin_orders.php">List/Search Orders</a></div>
-    <div class="admin-menu-item"><a href="admin_cusproducts.php">List/Search Customized Products</a></div>
+    <div class="admin-menu-item"><a href="admin_orders.php">Search Orders</a></div>
+    <div class="admin-menu-item"><a href="admin_cusproducts.php">Search Customized Products</a></div>
   </div>
   <div id="admin-content">
     <form id="admin-cusproducts-search-form" action="admin_cusproducts.php" method="post">

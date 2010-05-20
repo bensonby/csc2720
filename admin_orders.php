@@ -21,8 +21,8 @@ include 'menu.php';
 <div id="content">
   <div id="admin-menu">
     <h2>Admin Panel</h2>
-    <div class="admin-menu-item"><a href="admin_orders.php">List/Search Orders</a></div>
-    <div class="admin-menu-item"><a href="admin_cusproducts.php">List/Search Customized Products</a></div>
+    <div class="admin-menu-item"><a href="admin_orders.php">Search Orders</a></div>
+    <div class="admin-menu-item"><a href="admin_cusproducts.php">Search Customized Products</a></div>
   </div>
   <div id="admin-content">
     <h2>Search Customer Orders</h2>
@@ -50,6 +50,7 @@ include 'menu.php';
      </table>
      <input type="submit" name="submit" value="Search Orders" />
     </form>
+    <br />
 
     <h2>Committed Order Details</h2>
     <?php if(empty($orders)){ ?>
@@ -90,7 +91,7 @@ include 'menu.php';
         <td class="row1">Price</td>
          <td class="row2"><?php echo $order->get_price(); ?></td>
         </tr>
-    </table>
+    </table><br />
     <?php } ?>
     <?php } ?>
   </div>

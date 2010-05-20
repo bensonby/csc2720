@@ -330,6 +330,8 @@ border-collapse:collapse;
 }
 #admin-order-table-container{
   width: 570px;
+  height: 1000px;
+  overflow: auto;
 }
 .admin-order-table{
   border-width: 0 0 2px 0;

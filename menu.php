@@ -33,16 +33,19 @@
 
     <a href="logout.php">Sign Out</a></div>
     </li>
+   <?php if(!($user->is_admin())){ ?>
     <li>
     <div id="user">
       Hello, <?php echo $user->get_name(); ?>!
     </div>
     </li>
  <?php } ?>
+  <?php } ?>
   
     		</ul>
 	   </div>
 	   
-  <?php if(has_msg()){ ?><div class="message"><?php echo get_msg(); ?></div><? } ?>
+  <?php if(has_msg()){ ?><div class="message"><?php echo get_msg(); ?></div>
+  <?php } ?>
   
   

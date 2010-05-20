@@ -245,3 +245,21 @@ h5{
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+.message {
+  background-color: #ffebe8;
+  font-weight: bold;
+  font-size: 20px;
+  color: #dd3c10;
+  width: 748px;
+  padding: 20px;
+  border: 3px solid #dd3c10;
+  margin: 3px;
+}
+
+#sign-in-block{
+  background-color: #FFFFFF;
+  width: 780px;
+  padding: 10px;
+  height: 800px;
+}

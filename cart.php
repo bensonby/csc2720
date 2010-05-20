@@ -22,11 +22,12 @@ $order_id=Order::get_orderid($_SESSION['user_id']);
 //die();
 if (!empty($order_id)){
   $cus_product_ids=Order::find($order_id);
-
-  foreach($cus_product_ids as $cp_id){
-      $cps[]=CusProduct::find($cp_id);
-  }
-  print $cps[0]->get_id();
+  
+  $tmp=$cus_product_ids->get_cus_product();
+  Validation::testing("cus_product",$tmp); 
+  
+  //Validation::testing("cart ",$cus_product_ids[0]->$cus_products);
+  //print $cps[0]->get_id();
 }
 ?>
 

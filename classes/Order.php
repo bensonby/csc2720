@@ -179,6 +179,10 @@ class Order {
     return false;
   }
   
+  function get_cus_product(){
+    return $this->cus_products;
+  }
+  
   function set_address($address){
     if (!empty($address)){
         $this->info["address"]=$address;

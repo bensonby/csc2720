@@ -321,5 +321,19 @@ border-collapse:collapse;
 #checkout-icon-container img{
   width: 100px;
   border: 0;
-
 }
+#checkout-button-container{
+  padding: 2px;
+}
+#checkout-button-container img{
+  border: 0;
+}
+#admin-order-table-container{
+  width: 570px;
+}
+.admin-order-table{
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: #000000;
+  border-collapse:collapse;
+}                                            

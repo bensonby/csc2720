@@ -55,23 +55,46 @@ include 'menu.php';
     <?php if(empty($orders)){ ?>
       No orders found. Please try another search.
     <?php }else{ ?>
-    <table border="0">
-      <tr><td>ID</td><td>User</td><td>Time</td><td>Name</td><td>Address</td><td>Email</td><td>Phone</td><td>Price</td></tr>
+    <div id="admin-order-table-container">
     <?php foreach($orders as $order){ ?>
-      <tr>
-        <td><?php echo $order->get_id(); ?></td>
-        <td><?php echo $order->get_user()->get_name(); ?></td>
-        <td><?php echo $order->get_time(); ?></td>
-        <td><?php echo $order->get_name(); ?></td>
-        <td><?php echo $order->get_address(); ?></td>
-        <td><?php echo $order->get_email(); ?></td>
-        <td><?php echo $order->get_phone(); ?></td>
-        <td><?php echo $order->get_price(); ?></td>
-      </tr>
-    <?php } ?>
+    <table class="admin-order-table">
+        <tr>
+        <td class="row1">ID</td>
+         <td class="row2"><?php echo $order->get_id(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">User</td>
+         <td class="row2"><?php echo $order->get_user()->get_name(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Time</td>
+         <td class="row2"><?php echo $order->get_time(); ?></td>
+         </tr>
+         <tr>
+         <td class="row1">Name</td>
+          <td class="row2"><?php echo $order->get_name(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Address</td>
+           <td class="row2"><?php echo $order->get_address(); ?></td>
+          </tr>
+         <tr>
+        <td class="row1">Email</td>
+          <td class="row2"><?php echo $order->get_email(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Phone</td>
+        <td class="row2"><?php echo $order->get_phone(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Price</td>
+         <td class="row2"><?php echo $order->get_price(); ?></td>
+        </tr>
     </table>
     <?php } ?>
+    <?php } ?>
   </div>
+ </div>
 </div>
 
 <?php

@@ -39,7 +39,8 @@ function dbstr($data, $delimiter, $isField=true){
   }
   foreach($data as $key=>$value){
     $ret.=($first!=1?$delimiter:"").($isField?$key."=":"");
-    $ret.=($key!='time'?"'":"").str_replace("'", "\\'", $value).($key!='time'?"'":"");
+    if(is_string($value)) $value = mysql_real_escape_string($value);
+    $ret.=($key!='time'?"'":"").$value.($key!='time'?"'":"");
     $first=0;
   }
   return $ret;

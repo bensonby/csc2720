@@ -63,10 +63,10 @@ owner INTEGER NOT NULL -- 0: company, others: user_id
 );
 
 INSERT INTO images VALUES
-('', 'IND_004.gif', 0),
-('', 'IND_011.gif', 0),
-('', 'IND_014.gif', 0),
-('', 'IND_016.gif', 0),
-('', 'IND_017.gif', 1),
-('', 'IND_018.gif', 1),
-('', 'IND_031.gif', 2)
+('', 'img_1.gif', 0),
+('', 'img_2.gif', 0),
+('', 'img_3.gif', 0),
+('', 'img_4.gif', 0),
+('', 'img_5.gif', 0),
+('', 'img_6.gif', 0),
+('', 'img_7.gif', 0)

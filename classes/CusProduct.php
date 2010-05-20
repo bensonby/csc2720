@@ -97,7 +97,8 @@ abstract class CusProduct {
       log2("invalid ID passed to CusProduct::find -- $id");
       return false;
     }
-    $result_main = sql("SELECT c.quantity, c.id AS id, c.product_id, p.*
+    $result_main = sql("SELECT c.quantity, c.id AS id, c.product_id, 
+                               p.name, p.description, p.price, p.attr_list, p.sample_image
                         FROM cus_products c, products p
                         WHERE c.id=$id AND c.product_id=p.id", SQL_SINGLE_ROW);
     if(!$result_main) return false;
@@ -117,6 +118,22 @@ abstract class CusProduct {
     }
   }
 
+  static function search($product_ids){
+    for($i=0; $i<count($product_ids); $i++) $product_ids[$i] = intval($product_ids[$i]);
+    $str = empty($product_ids)?"":"AND c.product_id IN (".implode(",", $product_ids).")";
+    $query = "SELECT c.id FROM cus_products c, orders o, order_products p
+              WHERE c.id = p.cus_product_id AND o.id = p.order_id $str";
+//AND o.status="complete"
+    $result = sql($query, SQL_SINGLE_COL);
+    if(!$result){
+      log2("sql error! -- ".mysql_error().": $query");
+      return array();
+    }
+    $ret = array();
+    foreach($result as $id) $ret[] = CusProduct::find($id);
+    return $ret;
+  }
+
   function is_saved(){
     return !empty($this->info["id"]);
   }
@@ -130,5 +147,12 @@ abstract class CusProduct {
   function get_sample_image(){ return $this->info["sample_image"]; }
   function get_attr_list(){ return $this->info["attr_list"]; }
   function get_attr(){ return $this->attr; }
+  function find_username(){
+    $user_id = sql("SELECT o.user_id FROM orders o, order_products p, cus_products c
+                   WHERE o.id = p.order_id AND c.id = p.cus_product_id AND c.id = {$this->info["id"]}",
+                   SQL_SINGLE_VALUE);
+    $user = new User($user_id);
+    return $user->get_name();
+  }
 }
 ?>

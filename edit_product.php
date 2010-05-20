@@ -86,7 +86,7 @@ function modify_product($user, $product, $attrs){
   $cusproduct->set_quantity($_POST["attr"]["quantity"]);
 
   foreach($_POST["attr"] as $t=>$v)
-    if (!$t=="quantity")
+    if ($t!="quantity")
       $ret[$t]=$v;
   Validation::testing("before",$cusproduct->get_custom());
   Validation::testing("modify",$ret);
@@ -95,7 +95,7 @@ function modify_product($user, $product, $attrs){
   
   //->create_cusproduct($attrs);
   if(!$cusproduct || !$cusproduct->update()){
-    set_msg("Failed to create your customized product, please verify the input and try again.");
+    set_msg("Failed to modify your customized product, please verify the input and try again.");
     return false;
   }
   
@@ -106,7 +106,7 @@ function modify_product($user, $product, $attrs){
     return false;
   }
   if($cart->update()){
-    set_msg("Successfully added the product to your cart.");
+    set_msg("Successfully modified the product in your cart.");
     return true;
   }else{
     set_msg("Falied to update your cart. Please try again later.");

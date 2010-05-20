@@ -5,9 +5,12 @@ include 'header.php';
 
 include 'menu.php';
 
-function remove($order,$product){
+function remove($cp_id){
   $val=Validation::own_cus_product($cp_id,$_SESSION["user_id"]);
-  $order->remove_product($product);
+  if ($val){
+    $cus_pro=CusProduct::find($cp_id);
+    $order->remove_product($cus_pro);
+  }
 }
 
 function change($cp_id,$attrs){

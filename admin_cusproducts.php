@@ -56,12 +56,12 @@ include 'menu.php';
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="up"><?php echo $key; ?></td>
           <?php } ?>
+          <?php echo str_repeat("<td class='up-and-low' rowspan='2'> </td>", 5-count($p->get_attr_list())); ?>
         </tr>
         <tr>
           <?php foreach($p->get_custom() as $key=>$value){ ?>
           <td class="low"><em><?php echo ($key!="image"?$value:"<a target='_blank' href='show_image.php?id=$value'>$value</a>"); ?></em></td>
           <?php } ?>
-          <?php echo str_repeat("<td class='low'> </td>", 5-count($p->get_attr_list())); ?>
         </tr>
     <?php } ?>
     <?php } ?>

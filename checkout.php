@@ -67,8 +67,14 @@ include 'menu.php';
           <td class="row2"><input type="text" name="email" value="<?php echo $_POST["email"]; ?>"/> </td>
        </tr>
        <tr>
-          <td colspan="2"><input type="submit" value="Submit" /><input type="reset" value="Reset" /><input type="button" value="Back" /></td>
-       </tr>
+          <td colspan="2">
+                  <div id="checkout-button-container">
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+                 <a href="cart.php"><img src="images/back.gif"/></a>
+            </div>
+          </td>
+        </tr>
      </table>
   </form>
 </div>

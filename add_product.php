@@ -61,7 +61,7 @@ include 'menu.php';
   </h3>
 </div>
 
-<?
+<?php
 include 'footer.php';
 
 function display_form_attr($user, $cusproduct, $old_inputs){

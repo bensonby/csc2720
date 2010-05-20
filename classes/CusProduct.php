@@ -22,6 +22,15 @@ abstract class CusProduct {
         throw new Exception("Hacking Attempt -- invalid value of attribute $key");
       $this->custom[$key]=$attrs[$key];
     }
+    $this->find_user();
+  }
+
+  private function find_user(){
+    $user_id = sql("SELECT o.user_id FROM orders o, order_products p, cus_products c
+                   WHERE o.id = p.order_id AND c.id = p.cus_product_id AND c.id = {$this->info["id"]}",
+                   SQL_SINGLE_VALUE);
+    $user = new User($user_id);
+    $this->user = $user;
   }
 
   function save(){
@@ -147,12 +156,7 @@ abstract class CusProduct {
   function get_sample_image(){ return $this->info["sample_image"]; }
   function get_attr_list(){ return $this->info["attr_list"]; }
   function get_attr(){ return $this->attr; }
-  function find_username(){
-    $user_id = sql("SELECT o.user_id FROM orders o, order_products p, cus_products c
-                   WHERE o.id = p.order_id AND c.id = p.cus_product_id AND c.id = {$this->info["id"]}",
-                   SQL_SINGLE_VALUE);
-    $user = new User($user_id);
-    return $user->get_name();
-  }
+  function get_custom(){ return $this->custom; }
+  function find_username(){ return $this->user->get_name();  }
 }
 ?>

@@ -19,13 +19,19 @@ if (empty($cus_products)){
 }
 $keys=array("name","phone","email");
 $error=false;
+$msg='';
 if (Validation::name($_POST["name"]))
   $order->set_name($_POST["name"]);
 else{
   $error=true;
   $msg="Name format incorrect<br>";
 }
-$order->set_address($_POST["address"]);
+if (Validation::address($_POST["address"]))
+  $order->set_address($_POST["address"]);
+else {
+  $error=true;
+  $msg=$msg."Address format incorrect<br>";
+}
 if (Validation::phone($_POST["phone"]))
   $order->set_phone($_POST["phone"]);
 else{

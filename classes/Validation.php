@@ -25,6 +25,14 @@ class Validation {
     return true;
   }
   
+  static function address($subject){
+    $pattern = '/^[A-Za-z0-9]+[A-Za-z0-9,; ]*[A-Za-z0-9]*$/';
+    $num=preg_match($pattern, $subject); 
+    if ($num==0)
+        return false;
+    return true;
+  }
+  
   static function own_cus_product($cp_id,$uid){
     if(!(string)(int)$cp_id == (string)$cp_id) return false;
     $result=sql("SELECT od.id 

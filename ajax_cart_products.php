@@ -9,7 +9,7 @@ if(!$user->is_admin()){
 }
 
 $order_id = $_GET["id"];
-$order = Order::find($order_id);
+$order = Order::find($order_id, true);
 if(!$order instanceof Order){
   log2("Invalid order created for order ID $order_id");
   echo "Invalid Order";

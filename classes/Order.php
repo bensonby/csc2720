@@ -103,12 +103,15 @@ class Order {
     return true;
   }
 
-  static function find($id){
+  static function find($id, $isCommitted=false){
     if(!$id) return false;
+
+    if((string)(int)$id != (string)$id) return false;
 
     $id = intval($id);
 
-    $info = sql("SELECT * FROM orders WHERE id = $id", SQL_SINGLE_ROW);
+    $committed_sql = ($isCommitted?"AND status='completed'":"");
+    $info = sql("SELECT * FROM orders WHERE id = $id $committed_sql", SQL_SINGLE_ROW);
     if(!$info){
       log2("failed to find the order with id $id");
       return false;

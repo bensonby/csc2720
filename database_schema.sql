@@ -18,9 +18,9 @@ attr_list VARCHAR(50) NOT NULL,
 sample_image VARCHAR(70) NOT NULL
 );
 INSERT INTO products VALUES
-  (1, 'T-shirt', 'T-shirt more text..', 10, 'image,size,color,image location,image size', 'images/sample-shirt.jpg'),
-  (2, 'Cup', 'Cup more text..', 20, 'image,size,color,handle style', 'images/sample-cup.jpg'), 
-  (3, 'Cap', 'Cap more text..', 30, 'image,size,color,text', 'images/sample-cap.jpg');
+  (1, 'T-shirt', 'Our t-shirts are made with 100% cotton. Comfortable yet stylish to be worn on summer days. ', 70, 'image,size,color,image location,image size', 'images/sample-shirt.jpg'),
+  (2, 'Cup', 'Our cups are made from ceramics. With 3 different handle sytles, you can make your own unique cups to give to your beloved ones. ', 50, 'image,size,color,handle style', 'images/sample-cup.jpg'), 
+  (3, 'Cap', 'To go fashionable this summer? Design your own caps and shine on the street!', 80, 'image,size,color,text', 'images/sample-cap.jpg');
 -- t-shirt: image, size, color, image location, image size
 -- cup: image, size, color, handle style
 -- hat: image, size, color, text

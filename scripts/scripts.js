@@ -3,6 +3,7 @@ function signin_init(){
   if(e){
     $('sign-in-box').setStyle({display: 'none'});
     $('sign-in').observe('mouseover', showLogin);
+    $('sign-in').observe('click', showLogin);
     $('logo').observe('click', hideLogin);
     $('content').observe('click', hideLogin);
     var e2 = $('message-box');

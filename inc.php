@@ -103,7 +103,7 @@ function display_form_attr($user, $cusproduct, $old_inputs){
       $ret.="</div>\n";                   
     }else if($key=="text"){
       $ret.="<input type='text' name='attr[$key]' maxlength='$values' 
-              value='{$old_inputs["attr"][$key]}' />\n";
+              value='{$old_inputs["attr"][$key]}' /> <span class='note'>(leave this blank for no text)</span>\n";
     }else{
       foreach($values as $value){
         $checked = ($old_inputs["attr"][$key] == $value ? "checked='checked'" : "");

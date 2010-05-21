@@ -58,6 +58,7 @@ include 'menu.php';
         <form method="post" enctype="multipart/form-data"
               action="edit_product.php?id=<?php echo $cusproduct->get_id(); ?>">
 
+          <span class='note'>All fields are required, unless otherwise stated</span><br />
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
           <table border="0">
             <tr>

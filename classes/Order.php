@@ -1,10 +1,7 @@
 <?php
 class Order {
   private $info = array(); //id, user, status, time, name, address, email, phone, price
-//  private $id;
   private $cus_products = array();
-//  private $user;
-//  private $status="", $time="", $name="", $address="", $email="", $phone="", $price=0.0;
 
   function __construct(){
     $this->info = array("id" => '',

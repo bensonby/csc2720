@@ -2,7 +2,6 @@
 class Product {
 
   private $info = array(); //id, name, description, price, sample_image, attr_list(array)
-//  private $id, $name, $description, $price, $sample_image, $attr_list = array();
 
   static function find($id){
     $id = intval($id);
@@ -18,11 +17,6 @@ class Product {
 
   private function __construct($info){
     $this->info = array_merge($this->info, $info);
-/*    $this->id = $info["id"];
-    $this->name = $info["name"];
-    $this->description = $info["description"];
-    $this->price = $info["price"];
-    $this->sample_image = $info["sample_image"];*/
     $this->info["attr_list"] = explode(",", $this->info["attr_list"]);
   }
 

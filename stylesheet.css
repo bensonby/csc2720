@@ -353,7 +353,7 @@ border-collapse:collapse;
 #ajax-popup {
   position: absolute;
   z-index: 5;
-  width: 600px;
+  width: 680px;
   margin: 0;
   height: 400px;
   background-color: #333333;

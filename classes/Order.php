@@ -135,6 +135,17 @@ class Order {
     else return intval($result[0]);
   }
 
+  static function get_orderid_from_cusproduct($cus_product_id){
+    if((string)(int)$cus_product_id != (string)$cus_product_id) return false;
+    $cus_product_id = intval($cus_product_id);
+    $result = sql("SELECT order_id FROM order_products WHERE cus_product_id={$cus_product_id}", SQL_SINGLE_VALUE);
+    if(!$result){
+      log2("Find order ID from customized product Error! cus_product_id: {$cus_product_id}");
+      return false;
+    }
+    return $result;
+  }
+
   function add_product($cus_product){
     //both the cart and the customized product should have been saved into db
     if(!$this->is_saved() || !$cus_product->is_saved() || !$cus_product instanceof CusProduct){

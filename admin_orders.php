@@ -21,7 +21,7 @@ include 'menu.php';
 <div id="content">
   <div id="ajax-popup" style="display: none;">
     <div id="ajax-close"><a href="#" onclick="close_ajax()">Close</a></div>
-    <div id="ajax-title">Product Details for Order ID <span id="ajax-order-id">3</span></div>
+    <div id="ajax-title">Product Details for Order ID <span id="ajax-id"> </span></div>
     <div id="ajax-loading">Loading... </div>
     <div id="ajax-body" style=""> </div>
   </div>

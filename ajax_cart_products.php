@@ -1,15 +1,21 @@
 <?php
 
 include 'inc.php';
-//sleep(2); //for testing "loading..."
+sleep(2); //for testing "loading..."
 
 if(!$user->is_admin()){
   echo "System Error";
   exit();
 }
 
-$order_id = $_GET["id"];
-$order = Order::find($order_id, true);
+if(@isset($_GET["order_id"])){
+  $order_id = $_GET["order_id"];
+  $order = Order::find($order_id, true);
+}else if(@isset($_GET["cus_product_id"])){
+  $order_id = Order::get_orderid_from_cusproduct($_GET["cus_product_id"]);
+  $order = Order::find($order_id, true);
+}
+
 if(!$order instanceof Order){
   log2("Invalid order created for order ID $order_id");
   echo "Invalid Order";
@@ -17,6 +23,42 @@ if(!$order instanceof Order){
 }
 $cus_products = $order->get_cus_product();
 ?>
+<!-- code from admin_orders.php -->
+    <table class="admin-order-table">
+        <tr>
+        <td class="row1">Order ID</td>
+         <td class="row2"><?php echo $order->get_id(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">User</td>
+         <td class="row2"><?php echo $order->get_user()->get_name(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Time</td>
+         <td class="row2"><?php echo $order->get_time(); ?></td>
+         </tr>
+         <tr>
+         <td class="row1">Name</td>
+          <td class="row2"><?php echo $order->get_name(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Address</td>
+           <td class="row2"><?php echo $order->get_address(); ?></td>
+          </tr>
+         <tr>
+        <td class="row1">Email</td>
+          <td class="row2"><?php echo $order->get_email(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Phone</td>
+        <td class="row2"><?php echo $order->get_phone(); ?></td>
+         </tr>
+         <tr>
+        <td class="row1">Total Price</td>
+         <td class="row2"><?php echo $order->get_price(); ?></td>
+        </tr>
+    </table><br />
+<!-- code from admin_orders.php end -->
 <!-- code from cart.php -->
     <table border="0" class="collapse">
         <tr class="show-table"><!--<td></td><td></td>--><td>Product</td><td>Quantity</td><td>Attributes</td>

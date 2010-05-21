@@ -18,6 +18,12 @@ include 'menu.php';
 
 ?>
 <div id="content">
+  <div id="ajax-popup" style="display: none;">
+    <div id="ajax-close"><a href="#" onclick="close_ajax()">Close</a></div>
+    <div id="ajax-title">Cart Details for Customized Product ID <span id="ajax-id"> </span></div>
+    <div id="ajax-loading">Loading... </div>
+    <div id="ajax-body" style=""> </div>
+  </div>
   <div id="admin-menu">
     <h2>Admin Panel</h2>
     <div class="admin-menu-item"><a href="admin_orders.php">Search Orders</a></div>
@@ -47,7 +53,7 @@ include 'menu.php';
         <tr class="show-table"><td>Details</td><td>ID</td><td>User</td><td>Product</td><td>Quantity</td><td>Attributes</td></tr>
     <?php  foreach($cus_products as $p){ ?>
         <tr>
-          <td class="up-and-low" rowspan="2"><a href="admin_cusproduct.php?id=<?php echo $p->get_id(); ?>">details</a></td>
+          <td class="up-and-low" rowspan="2"><a href="javascript:find_cart(<?php echo $p->get_id(); ?>)">Cart details</a></td>
           <td class="up-and-low" rowspan="2"><?php echo $p->get_id(); ?></td>
           <td class="up-and-low" rowspan="2"><?php echo $p->find_username(); ?></td>
           <td class="up-and-low" rowspan="2"><?php echo $p->get_name(); ?></td>

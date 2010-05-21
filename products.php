@@ -22,7 +22,7 @@ include 'menu.php';
         <h5>Customizable Features: </h5>
           <span class="products-attr-list"><?php echo implode(", ", $product->get_attr_list()); ?></span>
         <h5>Price: </h5>
-           <span class="products-price-text"><?php echo $product->get_price(); ?></span>
+           <span class="products-price-text">HKD <?php echo $product->get_price(); ?></span>
       </div>
       <div class="products-buy-container">
         <a onclick="show_product_box(<?php echo $product->get_id(); ?>); return false" 

@@ -70,12 +70,6 @@ class Validation {
     return true;
   }
   
-  static function testing($sign,$var){
-    print "<br><b> $sign test start=> </b>";
-    var_dump($var);
-    print " <=<b>test end</b><br>";
-  }
-  
 }
 
 ?>

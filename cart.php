@@ -11,10 +11,6 @@ function remove($cp_id,$order_id){
   }
 }
 
-function change($cp_id,$attrs){
-  //$val=Validation::cus_attrs($pid,$attrs);
-}
-
 if($_SERVER["REQUEST_METHOD"]=="GET"){
   if(!empty($_GET["id"]) && !empty($_GET["oid"]))
     remove($_GET["id"],$_GET["oid"]);}
@@ -30,7 +26,6 @@ if (!empty($order_id)){
 if (empty($cus_products)){
   set_msg("<h4>Your cart is empty. Go to <a href='products.php'>PRODUCTS</a> to buy something.</h4>");
 }
-
 
 include 'header.php';
 

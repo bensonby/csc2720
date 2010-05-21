@@ -6,11 +6,6 @@ if (!empty($order_id)){
   $cus_products=$order->get_cus_product();
 }
 
-//if ($order->get_status=="completed"){
-// header("Location: index.php");
-//  exit();  
-//}
-
 if (empty($cus_products)){
   header("Location: cart.php");
   exit();

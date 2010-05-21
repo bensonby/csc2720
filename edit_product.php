@@ -56,7 +56,7 @@ include 'menu.php';
       </div>
       <div class="products-customize-container" style="clear: both;">
         <form method="post" enctype="multipart/form-data"
-              action="edit_product.php?id=<?php echo $cusproduct->get_product_id(); ?>">
+              action="edit_product.php?id=<?php echo $cusproduct->get_id(); ?>">
 
           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
           <table border="0">

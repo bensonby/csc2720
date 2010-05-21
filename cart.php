@@ -28,7 +28,7 @@ if (!empty($order_id)){
 }
 
 if (empty($cus_products)){
-  set_msg("<h4>Your cart is empty. Click PRODUCTS to buy something.</h4>");
+  set_msg("<h4>Your cart is empty. Go to <a href='products.php'>PRODUCTS</a> to buy something.</h4>");
 }
 
 

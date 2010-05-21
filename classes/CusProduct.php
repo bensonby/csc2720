@@ -136,7 +136,10 @@ abstract class CusProduct {
       return array();
     }
     $ret = array();
-    foreach($result as $id) $ret[] = CusProduct::find($id);
+    foreach($result as $id){
+      $obj = CusProduct::find($id);
+      if($obj instanceof CusProduct) $ret[] = $obj;
+    }
     return $ret;
   }
 

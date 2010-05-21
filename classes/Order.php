@@ -122,7 +122,8 @@ class Order {
 
     $cus_product_ids = sql("SELECT cus_product_id FROM order_products WHERE order_id= {$id}", SQL_SINGLE_COL);
     foreach($cus_product_ids as $cp_id){
-      $order->cus_products[] = CusProduct::find(intval($cp_id));
+      $obj = CusProduct::find(intval($cp_id));
+      if($obj instanceof CusProduct) $order->cus_products[] = $obj;
     }
     return $order;
   }

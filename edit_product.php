@@ -66,7 +66,7 @@ include 'menu.php';
                 <label for="attr[quantity]">Quantity</label>
               </td>
               <td class="row2">
-                <input type="text" name="attr[quantity]" value="<?php echo $_POST["attr"]["quantity"]; ?>" />
+                <input type="text" name="attr[quantity]" value="<?php echo htmlspecialchars ($_POST["attr"]["quantity"], ENT_QUOTES); ?>" />
               </td>
             </tr>
             <?php echo display_form_attr($user, $cusproduct, $_POST); ?>

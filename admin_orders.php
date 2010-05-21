@@ -54,7 +54,7 @@ include 'menu.php';
         </tr>
         <tr>
           <td><label for="email">Email Address</label></td>
-          <td colspan="2"><input type="text" name="email" size="30" value="<?php echo $_POST["email"]; ?>" /></td>
+          <td colspan="2"><input type="text" name="email" size="30" value="<?php echo htmlspecialchars ($_POST["email"], ENT_QUOTES); ?>" /></td>
         </tr>
      </table>
      <input type="submit" name="submit" value="Search Orders" />

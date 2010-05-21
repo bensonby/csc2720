@@ -38,3 +38,147 @@ Array
         )
 
 )
+-------------------------------------------------------
+Time: 2010-05-21 06:30:16
+Failed to create the cart (Order) for the user 1
+Array
+(
+    [0] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\add_product.php
+            [line] => 83
+            [function] => log2
+            [args] => Array
+                (
+                    [0] => Failed to create the cart (Order) for the user 1
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\add_product.php
+            [line] => 19
+            [function] => add_product
+            [args] => Array
+                (
+                    [0] => User Object
+                        (
+                            [id:User:private] => 1
+                            [username:User:private] => user1
+                            [is_admin:User:private] => 
+                        )
+
+                    [1] => Product Object
+                        (
+                            [info:Product:private] => Array
+                                (
+                                    [id] => 2
+                                    [name] => Cup
+                                    [description] => Cup more text..
+                                    [price] => 20
+                                    [attr_list] => Array
+                                        (
+                                            [0] => image
+                                            [1] => size
+                                            [2] => color
+                                            [3] => handle style
+                                        )
+
+                                    [sample_image] => images/sample-cup.jpg
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [quantity] => 2
+                            [image] => 1
+                            [size] => Small
+                            [handle style] => type 1
+                            [color] => White
+                        )
+
+                )
+
+        )
+
+)
+-------------------------------------------------------
+Time: 2010-05-21 15:22:06
+SQL Execution Error -- : SELECT id FROM orders  AND (time >= '2010-05-21' AND time <= '2010-05-21') and email = '\'\"/<> '
+Array
+(
+    [0] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\classes\Order.php
+            [line] => 280
+            [function] => log2
+            [args] => Array
+                (
+                    [0] => SQL Execution Error -- : SELECT id FROM orders  AND (time >= '2010-05-21' AND time <= '2010-05-21') and email = '\'\"/<> '
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\admin_orders.php
+            [line] => 11
+            [function] => search
+            [class] => Order
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [time_start] => 2010-05-21
+                            [time_end] => 2010-05-21
+                            [email] => '"/<> 
+                            [submit] => Search Orders
+                        )
+
+                )
+
+        )
+
+)
+-------------------------------------------------------
+Time: 2010-05-21 15:23:10
+SQL Execution Error -- : SELECT id FROM orders  AND (time >= '2010-05-21' AND time <= '2010-05-21') and email = '\'\"/<> '
+Array
+(
+    [0] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\classes\Order.php
+            [line] => 280
+            [function] => log2
+            [args] => Array
+                (
+                    [0] => SQL Execution Error -- : SELECT id FROM orders  AND (time >= '2010-05-21' AND time <= '2010-05-21') and email = '\'\"/<> '
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => E:\xampp\xampplite\htdocs\csc2720\admin_orders.php
+            [line] => 11
+            [function] => search
+            [class] => Order
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [time_start] => 2010-05-21
+                            [time_end] => 2010-05-21
+                            [email] => '"/<> 
+                            [submit] => Search Orders
+                        )
+
+                )
+
+        )
+
+)

@@ -57,7 +57,7 @@ include 'menu.php';
                 <label for="attr[quantity]">Quantity</label>
               </td>
               <td class="row2">
-                <input type="text" name="attr[quantity]" value="<?php echo htmlspecialchars ($_POST["attr"]["quantity"], ENT_QUOTES); ?>" />
+                <input type="text" name="attr[quantity]" value="<?php echo htmlentities($_POST["attr"]["quantity"], ENT_QUOTES); ?>" />
               </td>
             </tr>
             <?php echo display_form_attr($user, $cusproduct, $_POST); ?>
@@ -75,7 +75,7 @@ include 'footer.php';
 
 function add_product($user, $product, $attrs){
   $cusproduct = $product->create_cusproduct($attrs);
-  if(!$cusproduct || !$cusproduct->save()){
+  if(!$cusproduct || !$cusproduct->save() || intval($_POST["attr"]["quantity"])<=0){
     set_msg("Failed to create your customized product, please verify the input and try again.");
     return false;
   }

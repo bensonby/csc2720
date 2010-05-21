@@ -101,9 +101,9 @@ function display_form_attr($user, $cusproduct, $old_inputs){
       }
       $ret.="</div>\n";                   
     }else if($key=="text"){
-      $tmp=htmlspecialchars ($old_inputs["attr"][$key], ENT_QUOTES);
+      $old_inputs["attr"][$key]=htmlentities($old_inputs["attr"][$key], ENT_QUOTES);
       $ret.="<input type='text' name='attr[$key]' maxlength='$values' 
-              value='{$tmp}' /> <span class='note'>(leave this blank for no text)</span>\n";
+              value='{$old_inputs["attr"][$key]}' /> <span class='note'>(leave this blank for no text)</span>\n";
     }else{
       foreach($values as $value){
         $checked = ($old_inputs["attr"][$key] == $value ? "checked='checked'" : "");

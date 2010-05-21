@@ -8,6 +8,7 @@ function remove($cp_id,$order_id){
     $cus_pro=CusProduct::find($cp_id);
     $order=Order::find($order_id);
     $order->remove_product($cus_pro);
+    $order->update();
   }
 }
 
@@ -59,7 +60,7 @@ include 'menu.php';
           <td class="up-and-low" rowspan="2"><?php echo $p->get_quantity(); ?></td>
           
           <?php foreach($p->get_custom() as $key=>$value){ ?>
-          <td class="up"><?php echo $key; ?></td>
+          <td class="up"><?php echo htmlentities($key, ENT_QUOTES); ?></td>
           <?php } ?>
           <?php echo str_repeat("<td class='up-and-low' rowspan='2'> </td>", 5-count($p->get_attr_list())); ?>
           <td class="up-and-low price" rowspan="2"><?php echo $p->get_price(); ?></td>

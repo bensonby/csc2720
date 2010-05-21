@@ -12,7 +12,7 @@ include 'menu.php';
 <div id="content">
   <?php foreach($products as $product){ ?>
     <div class="products-block">
-      <div class="products-img-container"><!-- perhaps 128x128 pixels? -->
+      <div class="products-img-container">
         <img src="<?php echo $product->get_sample_image(); ?>" />
       </div>
       <div class="products-desc-container">

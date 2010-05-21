@@ -1,13 +1,8 @@
 <?php
 abstract class CusProduct {
   private $info=array(); //id, product_id, name, price, description, quantity
-                         //user, cart
-//  private $product_id, $product_name;
   protected $attr=array(); //preset attributes
   private $custom=array(); //customized attributes input
-//  private $id;
-//  private $user_id;
-//  private $cart_id;
 
   function __construct($main, $attrs, $isValidate=1){
     $this->info = array_merge($this->info, $main);

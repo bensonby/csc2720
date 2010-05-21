@@ -33,7 +33,7 @@ include 'menu.php';
 <div id="content">
   <h3>Customize the <?php echo $cusproduct->get_name(); ?></h3>
     <div class="products-block">
-      <div class="products-img-container"><!-- perhaps 128x128 pixels? -->
+      <div class="products-img-container">
         <img src="<?php echo $cusproduct->get_sample_image(); ?>" />
       </div>
       <div class="products-desc-container">

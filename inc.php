@@ -89,7 +89,6 @@ function display_form_attr($user, $cusproduct, $old_inputs){
   foreach($attr as $key=>$values){
     $ret.="<tr><td class='row1'><label for='attr[$key]'>".ucwords($key)."</label></td><td class='row2'>\n";
     if($key=="image"){
-//      $ret.="<input type='file' name='attr[$key]' />\n";
       $ret.="<input type='radio' name='attr[$key]' value='0' />Upload your own photo:\n";
       $ret.="<input type='file' name='upload' /><br />\n";
       $ret.="Or select from below:<br />\n";

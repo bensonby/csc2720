@@ -19,7 +19,7 @@
     <form method="post" action="login.php">
       <p>
         <label for="username">Username</label>
-        <input type="text" name="username" size="10" />
+        <input type="text" name="username" size="10" id="username_field" />
       </p>
       <p>
         <label for="password">Password</label>
@@ -45,7 +45,7 @@
     		</ul>
 	   </div>
 	   
-  <?php if(has_msg()){ ?><div class="message"><?php echo get_msg(); ?></div>
+  <?php if(has_msg()){ ?><div id="message-box" class="message"><?php echo get_msg(); ?></div>
   <?php } ?>
   
   

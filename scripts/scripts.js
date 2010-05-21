@@ -2,15 +2,26 @@ function signin_init(){
   var e = $('sign-in-box');
   if(e){
     $('sign-in-box').setStyle({display: 'none'});
-    $('sign-in').observe('click', function(){
-      $('sign-in-box').toggle();
-      $('sign-in').toggleClassName('highlighted');
-      return false;
-    });
-
+    $('sign-in').observe('mouseover', showLogin);
+    $('logo').observe('click', hideLogin);
+    $('content').observe('click', hideLogin);
+    var e2 = $('message-box');
+    if(e2) $('message-box').observe('click', hideLogin);
     $('sign-in').writeAttribute("href", "#");
   }
 }
+
+function showLogin(){
+  $('sign-in-box').show();
+  $('sign-in').addClassName('highlighted');
+  $('username_field').focus();
+}
+
+function hideLogin(){
+      $('sign-in-box').hide();
+      $('sign-in').removeClassName('highlighted');
+}
+
 
 Event.observe(window, 'load', function(){
   signin_init();

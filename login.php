@@ -28,6 +28,7 @@ include 'header.php';
 include 'menu.php';
 ?>
 
+<div id="content">
 <div id="sign-in-block">
   <form method="post" action="login.php">
     <p>
@@ -40,6 +41,7 @@ include 'menu.php';
     </p>
     <input type="submit" value="Sign In" />
   </form>
+</div>
 </div>
 
 <?php

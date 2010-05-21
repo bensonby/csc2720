@@ -16,13 +16,13 @@ include 'menu.php';
         <img src="<?php echo $product->get_sample_image(); ?>" />
       </div>
       <div class="products-desc-container">
-        <h4><?php echo $product->get_name(); ?></h4>
+        <h4><?php echo $product->get_name(); ?></h4><br />
         <h5>Description: </h5>
-          <span class="products-desc-text"><?php echo $product->get_description(); ?></span>
+          <span class="products-desc-text"><?php echo $product->get_description(); ?></span><br /><br />
         <h5>Customizable Features: </h5>
-          <span class="products-attr-list"><?php echo implode(", ", $product->get_attr_list()); ?></span>
+          <span class="products-attr-list"><?php echo implode(", ", $product->get_attr_list()); ?></span><br /><br />
         <h5>Price: </h5>
-           <span class="products-price-text">HKD <?php echo $product->get_price(); ?></span>
+           <span class="products-price-text">HKD <?php echo $product->get_price(); ?></span><br />
       </div>
       <div class="products-buy-container">
         <a onclick="show_product_box(<?php echo $product->get_id(); ?>); return false" 

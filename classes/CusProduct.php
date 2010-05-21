@@ -12,7 +12,7 @@ abstract class CusProduct {
   function __construct($main, $attrs, $isValidate=1){
     $this->info = array_merge($this->info, $main);
     foreach($this->attr as $key=>$value){
-      if($isValidate && $key=="text" && (strlen($attrs[$key])>$value || empty($attrs[$key])))
+      if($isValidate && $key=="text" && (strlen($attrs[$key])>$value) )
         throw new Exception('Hacking Attempt -- customized attribute of type "text"');
       if($isValidate && $key=="image" && empty($attrs[$key]))
         throw new Exception('Hacking Attempt -- customized attribute of type "image"');

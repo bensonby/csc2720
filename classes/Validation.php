@@ -26,7 +26,7 @@ class Validation {
   }
   
   static function address($subject){
-    $pattern = '/^[A-Za-z0-9]+[A-Za-z0-9,; ]*[A-Za-z0-9]*$/';
+    $pattern = '/^[A-Za-z0-9]+[A-Za-z0-9,;\/ ]*[A-Za-z0-9]*$/';
     $num=preg_match($pattern, $subject); 
     if ($num==0)
         return false;

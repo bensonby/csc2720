@@ -338,6 +338,13 @@ border-collapse:collapse;
 #checkout-button-container img{
   border: 0;
 }
+#preview-button-container{
+  margin: 5px;
+}
+#preview-button-container img{
+  border: 0;
+}
+
 #admin-order-table-container{
   width: 570px;
   height: 1000px;

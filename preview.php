@@ -18,7 +18,7 @@ if (empty($cus_products)){
 
 
 ?>
-
+<div id="content">
 <!-- code from admin_orders.php -->
     <table class="admin-order-table">
         <tr>
@@ -96,8 +96,15 @@ if (empty($cus_products)){
       </tbody>
     <?php } ?>
      </table>
-    <div id="checkout-price">Total Price: HKD <?php echo $order->get_price(); ?></div>
-
-
-<form action="checkout.php" method="POST">
-<input type="submit" value="Submit" /><input type="button" value="Back" />
+     <form action="checkout.php" method="POST">
+    
+    <div id="checkout-price">
+      Total Price: HKD <?php echo $order->get_price(); ?>
+      <div id="preview-button-container">
+              <input type="submit" value="Submit" />
+                <a href="cart.php"><img src="images/back.gif"/></a>
+      </div>
+    </div>
+   
+</div>  
+  

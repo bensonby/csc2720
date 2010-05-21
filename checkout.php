@@ -1,6 +1,5 @@
 <?php
 include 'inc.php';
-
 $order_id=Order::get_orderid($_SESSION['user_id']);
 if (!empty($order_id)){
   $order=Order::find($order_id);
@@ -75,14 +74,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
 
 }
-
-
 include 'header.php';
 
 include 'menu.php';
 ?>
 
-<div id="content">
+
 <?php 
 if(!$_SESSION["checkout"])
     if($_SERVER["REQUEST_METHOD"]=="GET" or $error)
@@ -91,9 +88,4 @@ if(!$_SESSION["checkout"])
         $_SESSION["checkout"]=true;
         include 'preview.php';
     }
-?>
-</div>
-
-<?php
-include 'footer.php';
 ?>

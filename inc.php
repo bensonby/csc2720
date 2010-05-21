@@ -39,7 +39,7 @@ function dbstr($data, $delimiter, $isField=true){
   }
   foreach($data as $key=>$value){
     $ret.=($first!=1?$delimiter:"").($isField?$key."=":"");
-    if(is_string($value)) $value = mysql_real_escape_string($value);
+    if(is_string($value)){ echo $value." == "; $value = mysql_real_escape_string($value);
     $ret.=($key!='time'?"'":"").$value.($key!='time'?"'":"");
     $first=0;
   }
@@ -72,7 +72,7 @@ function log2($msg){
 function get_error_msg($id){
   switch($id){
     case 0: return "No image specified";
-    case -1: return "File upload error (file size limit: 100000 Bytes)";
+    case -1: return "No image specified";
     case -2: return "File type not allowed (only jpg/gif/png allowed)";
     case -3: return "File size too large (limit: 100000 Bytes)";
     case -4: return "Not a valid image file";

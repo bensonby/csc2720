@@ -22,7 +22,10 @@ include 'menu.php';
   <div id="ajax-popup" style="display: none;">
     <div id="ajax-close"><a href="#" onclick="close_ajax()">Close</a></div>
     <div id="ajax-title">Product Details for Order ID <span id="ajax-id"> </span></div>
-    <div id="ajax-loading">Loading... </div>
+    <div id="ajax-loading">
+      <p>Loading...</p>
+      <img src="images/ajax-loader.gif" width="220" height="19" alt="Loading" />
+    </div>
     <div id="ajax-body" style=""> </div>
   </div>
   <div id="admin-menu">

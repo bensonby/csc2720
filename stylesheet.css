@@ -395,4 +395,6 @@ border-collapse:collapse;
   font-weight: bold;
   margin: 50px;
   color: red;
+  text-align: center;
+  width: 500px;
 }

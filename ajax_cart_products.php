@@ -1,7 +1,6 @@
 <?php
 
 include 'inc.php';
-sleep(2); //for testing "loading..."
 
 if(!$user->is_admin()){
   echo "System Error";
@@ -21,6 +20,7 @@ if(!$order instanceof Order){
   echo "Invalid Order";
   exit();
 }
+sleep(1); //for testing "loading..."
 $cus_products = $order->get_cus_product();
 ?>
 <!-- code from admin_orders.php -->

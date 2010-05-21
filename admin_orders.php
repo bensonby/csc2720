@@ -19,6 +19,12 @@ include 'menu.php';
 
 ?>
 <div id="content">
+  <div id="ajax-popup" style="display: none;">
+    <div id="ajax-close"><a href="#" onclick="close_ajax()">Close</a></div>
+    <div id="ajax-title">Product Details for Order ID <span id="ajax-order-id">3</span></div>
+    <div id="ajax-loading">Loading... </div>
+    <div id="ajax-body" style=""> </div>
+  </div>
   <div id="admin-menu">
     <h2>Admin Panel</h2>
     <div class="admin-menu-item"><a href="admin_orders.php">Search Orders</a></div>
@@ -60,7 +66,7 @@ include 'menu.php';
     <?php foreach($orders as $order){ ?>
     <table class="admin-order-table">
         <tr>
-        <td class="row1">ID</td>
+        <td class="row1">Order ID</td>
          <td class="row2"><?php echo $order->get_id(); ?></td>
          </tr>
          <tr>
@@ -88,8 +94,12 @@ include 'menu.php';
         <td class="row2"><?php echo $order->get_phone(); ?></td>
          </tr>
          <tr>
-        <td class="row1">Price</td>
+        <td class="row1">Total Price</td>
          <td class="row2"><?php echo $order->get_price(); ?></td>
+        </tr>
+        <tr>
+          <td class="row1">Products</td>
+          <td class="row2"><a href="javascript:find_products(<?php echo $order->get_id(); ?>)">View details</a></td>
         </tr>
     </table><br />
     <?php } ?>

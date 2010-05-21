@@ -349,3 +349,50 @@ border-collapse:collapse;
   border-color: #000000;
   border-collapse:collapse;
 }                                            
+
+#ajax-popup {
+  position: absolute;
+  z-index: 5;
+  width: 600px;
+  margin: 0;
+  height: 400px;
+  background-color: #333333;
+  border: 2px solid black;
+  left: 100px;
+  top: 150px;
+  color: #CCC;
+}
+
+#ajax-popup a:link, #ajax-popup a:visited, #ajax-popup a:active {
+  color: white;
+}
+
+#ajax-close {
+  float: right;
+  font-size: 16px;
+  padding: 10px;
+}
+
+#ajax-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+#ajax-body {
+  height: 300px;
+  overflow: auto;
+  margin: 20px;
+  padding: 10px;
+  background-color: #EEE;
+  color: #333;
+}
+
+#ajax-loading {
+  position: absolute;
+  z-index: 3;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 50px;
+  color: red;
+}

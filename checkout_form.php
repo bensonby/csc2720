@@ -2,6 +2,7 @@
 <div id="content">
 <h3>Checkout Form</h3> 
   <form action="checkout.php" method="POST">
+     <span class="note">All fields are required</span><br />
      <table>
        <tr>
           <td class="row1">Name:</td>

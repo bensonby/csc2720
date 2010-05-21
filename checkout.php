@@ -33,19 +33,19 @@ if (!$_SESSION["checkout"]){
       $order->set_name($_POST["name"]);
     else{
       $error=true;
-      $msg="Name format incorrect<br>";
+      $msg="Name format incorrect (it can only contain alphabets or spaces)<br>";
     }
     if (Validation::address($_POST["address"]))
       $order->set_address($_POST["address"]);
     else {
       $error=true;
-      $msg=$msg."Address format incorrect<br>";
+      $msg=$msg."Address format incorrect (it cannot be empty)<br>";
     }
     if (Validation::phone($_POST["phone"]))
       $order->set_phone($_POST["phone"]);
     else{
       $error=true;
-      $msg=$msg."Phone format incorrect<br>";
+      $msg=$msg."Phone format incorrect, it must be of 8 digits only<br>";
     }
     if (Validation::email($_POST["email"])) 
       $order->set_email($_POST["email"]);

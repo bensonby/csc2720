@@ -46,6 +46,7 @@ function request_cart(key, value){
     if(e3) e3.show();
 
     $('ajax-body').update();
+    set_position(e);
     e.show();
     new Ajax.Updater('ajax-body', 'ajax_cart_products.php?' + key + '=' + value, { 
       method: 'get',
@@ -60,4 +61,10 @@ function request_cart(key, value){
 function close_ajax(){
   var e = $('ajax-popup');
   if(e) e.hide();
+}
+
+function set_position(el){
+  var positions = document.viewport.getScrollOffsets();
+  var y = positions[1] + 20;
+  el.setStyle({top: y + 'px'});
 }

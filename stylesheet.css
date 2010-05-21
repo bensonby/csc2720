@@ -378,6 +378,12 @@ border-collapse:collapse;
   float: right;
   font-size: 16px;
   padding: 10px;
+  color: white;
+}
+
+#ajax-close a {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 #ajax-title {

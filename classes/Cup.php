@@ -3,7 +3,7 @@
 class Cup extends CusProduct {
   protected $attr=array("image"=>'hello.jpg',
                         "size"=>array('Small', 'Medium', 'Large'),
-                        "handle style"=>array('type 1', 'type 2', 'type 3'),
+                        "material"=>array('ceramic', 'glass', 'plastic'),
                         "color" => array("White", "Yellow", "Blue", "Green", "Pink")
                        );
 

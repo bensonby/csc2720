@@ -17,47 +17,63 @@ if (empty($cus_products)){
   header("Location: cart.php");
   exit();
 }
-$keys=array("name","phone","email");
+
 $error=false;
 $msg='';
-if (Validation::name($_POST["name"]))
-  $order->set_name($_POST["name"]);
-else{
-  $error=true;
-  $msg="Name format incorrect<br>";
+
+if($_SERVER["REQUEST_METHOD"]=="GET"){
+    $_POST["name"]=$order->get_name();
+    $_POST["address"]=$order->get_address();
+    $_POST["phone"]=$order->get_phone();
+    $_POST["email"]=$order->get_email();
+    $_SESSION["checkout"]=false;
 }
-if (Validation::address($_POST["address"]))
-  $order->set_address($_POST["address"]);
-else {
-  $error=true;
-  $msg=$msg."Address format incorrect<br>";
+
+if (!$_SESSION["checkout"]){
+    if (Validation::name($_POST["name"]))
+      $order->set_name($_POST["name"]);
+    else{
+      $error=true;
+      $msg="Name format incorrect<br>";
+    }
+    if (Validation::address($_POST["address"]))
+      $order->set_address($_POST["address"]);
+    else {
+      $error=true;
+      $msg=$msg."Address format incorrect<br>";
+    }
+    if (Validation::phone($_POST["phone"]))
+      $order->set_phone($_POST["phone"]);
+    else{
+      $error=true;
+      $msg=$msg."Phone format incorrect<br>";
+    }
+    if (Validation::email($_POST["email"])) 
+      $order->set_email($_POST["email"]);
+    else{
+      $error=true;
+      $msg=$msg."Email format incorrect<br>";
+    }
+    $order->update();
 }
-if (Validation::phone($_POST["phone"]))
-  $order->set_phone($_POST["phone"]);
-else{
-  $error=true;
-  $msg=$msg."Phone format incorrect<br>";
-}
-if (Validation::email($_POST["email"])) 
-  $order->set_email($_POST["email"]);
-else{
-  $error=true;
-  $msg=$msg."Email format incorrect<br>";
-}
+
 if($_SERVER["REQUEST_METHOD"]=="POST")
   if ($error)
     set_msg("<h4>$msg</h4>");
   else{
-    $order->set_status("checkout");
-    $order->update();
-    set_msg("<h4>Order completed</h4>");
-
-   /* if(!Order::get_orderid($user_id)){
-      $order = new Order();
-      $user->assign_order($order);
-      $order->save();
+    
+    set_msg("<h4>Preview here</h4>");
+    if ($_SESSION["checkout"]==true){
+        $order->set_status("completed");
+        $order->update();
+        if(!Order::get_orderid($user_id)){
+          $order = new Order();
+          $user->assign_order($order);
+          $order->save();
+        }
+        set_msg("<h4>Order Completed</h4>");
     }
-*/
+
 }
 
 
@@ -68,12 +84,13 @@ include 'menu.php';
 
 <div id="content">
 <?php 
-if ($order->get_status()=="created")
-  include 'checkout_form.php';
-else
-{
- echo "done";
-}
+if(!$_SESSION["checkout"])
+    if($_SERVER["REQUEST_METHOD"]=="GET" or $error)
+      include 'checkout_form.php';
+    else if ($_SERVER["REQUEST_METHOD"]=="POST" and !$error){
+        $_SESSION["checkout"]=true;
+        include 'preview.php';
+    }
 ?>
 </div>
 
